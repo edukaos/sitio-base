@@ -1,0 +1,28 @@
+{
+  "titulo": "Casa con jardín y pileta",
+  "slug": "nun-casa-pileta",
+  "operacion": "venta",
+  "tipo": "casa",
+  "destacada": true,
+  "precio": 420000,
+  "moneda": "USD",
+  "barrio": "Núñez",
+  "direccion": "Moldes 3900",
+  "ambientes": 5,
+  "dormitorios": 3,
+  "banos": 3,
+  "superficieTotal": 300,
+  "superficieCubierta": 210,
+  "cochera": true,
+  "descripcion": "Hermosa casa en dos plantas sobre lote propio, en una de las calles más tranquilas de Núñez.\n\nPlanta baja con living con hogar, comedor, cocina con isla y toilette. Planta alta con tres dormitorios, el principal en suite con vestidor. Jardín con pileta y quincho.",
+  "caracteristicas": [
+    "Pileta",
+    "Quincho con parrilla",
+    "Cochera para 2 autos",
+    "Suite con vestidor",
+    "Calefacción por radiadores",
+    "Hogar a leña"
+  ],
+  "estado": "disponible",
+  "fotos": []
+}

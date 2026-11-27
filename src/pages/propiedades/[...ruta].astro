@@ -1,0 +1,25 @@
+---
+// Kit Inmobiliaria: /propiedades (listado) y /propiedades/<codigo> (ficha).
+// Si el sitio no tiene propiedades cargadas, estas páginas no se generan.
+import Base from '../../layouts/Base.astro';
+import ListadoPropiedades from '../../components/ListadoPropiedades.astro';
+import FichaPropiedad from '../../components/FichaPropiedad.astro';
+import { propiedades, type Propiedad, formatoPrecio } from '../../lib/propiedades';
+
+export function getStaticPaths() {
+  if (propiedades.length === 0) return [];
+  return [
+    { params: { ruta: undefined }, props: { propiedad: undefined } },
+    ...propiedades.map((p) => ({ params: { ruta: p.slug }, props: { propiedad: p } })),
+  ];
+}
+
+const { propiedad } = Astro.props as { propiedad?: Propiedad };
+const titulo = propiedad ? propiedad.titulo : 'Propiedades';
+const descripcion = propiedad
+  ? `${formatoPrecio(propiedad)} · ${[propiedad.barrio, propiedad.ambientes && `${propiedad.ambientes} ambientes`].filter(Boolean).join(' · ')}`
+  : 'Propiedades en venta y alquiler.';
+---
+<Base titulo={titulo} descripcion={descripcion} imagen={propiedad?.fotos?.[0]}>
+  {propiedad ? <FichaPropiedad propiedad={propiedad} /> : <ListadoPropiedades />}
+</Base>

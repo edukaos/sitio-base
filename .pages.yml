@@ -207,6 +207,29 @@ content:
               - { name: texto, label: Texto, type: text }
               - { name: boton, label: Botón, component: boton }
 
+          - name: buscador
+            label: Buscador de propiedades
+            fields:
+              - { name: titulo, label: Título, type: string }
+
+          - name: propiedades
+            label: Grilla de propiedades
+            fields:
+              - { name: ancla, label: Ancla para el menú, type: string }
+              - { name: etiqueta, label: Texto pequeño superior, type: string }
+              - { name: titulo, label: Título, type: string }
+              - { name: subtitulo, label: Bajada, type: text }
+              - name: mostrar
+                label: Qué mostrar
+                type: select
+                options:
+                  values:
+                    - { value: destacadas, label: "Destacadas" }
+                    - { value: venta, label: "En venta" }
+                    - { value: alquiler, label: "En alquiler" }
+                    - { value: todas, label: "Todas" }
+              - { name: cantidad, label: Cantidad máxima, type: number }
+
           - name: contacto
             label: Contacto
             fields:
@@ -216,3 +239,65 @@ content:
               - { name: subtitulo, label: Bajada, type: text }
               - { name: mostrarFormulario, label: Mostrar formulario, type: boolean }
               - { name: mostrarMapa, label: Mostrar mapa, type: boolean }
+
+  - name: propiedades
+    label: Propiedades
+    type: collection
+    path: src/content/propiedades
+    format: json
+    filename: "{fields.slug}.json"
+    view:
+      primary: titulo
+    fields:
+      - { name: titulo, label: Título, type: string, required: true }
+      - { name: slug, label: "Código (sin espacios, ej. pal-3amb-balcon)", type: string, required: true }
+      - name: operacion
+        label: Operación
+        type: select
+        options:
+          values:
+            - { value: venta, label: "Venta" }
+            - { value: alquiler, label: "Alquiler" }
+            - { value: temporal, label: "Alquiler temporal" }
+      - name: tipo
+        label: Tipo
+        type: select
+        options:
+          values:
+            - { value: departamento, label: "Departamento" }
+            - { value: casa, label: "Casa" }
+            - { value: ph, label: "PH" }
+            - { value: terreno, label: "Terreno" }
+            - { value: local, label: "Local" }
+            - { value: oficina, label: "Oficina" }
+            - { value: cochera, label: "Cochera" }
+            - { value: campo, label: "Campo" }
+      - name: estado
+        label: Estado
+        type: select
+        options:
+          values:
+            - { value: disponible, label: "Disponible" }
+            - { value: reservada, label: "Reservada" }
+            - { value: vendida, label: "Vendida / alquilada" }
+      - { name: destacada, label: Destacada en la portada, type: boolean }
+      - { name: precio, label: "Precio (solo números, vacío = Consultar)", type: number }
+      - name: moneda
+        label: Moneda
+        type: select
+        options:
+          values:
+            - { value: USD, label: "Dólares (USD)" }
+            - { value: ARS, label: "Pesos ($)" }
+      - { name: expensas, label: "Expensas en pesos (opcional)", type: number }
+      - { name: barrio, label: Barrio, type: string }
+      - { name: direccion, label: "Dirección (opcional, para el mapa)", type: string }
+      - { name: ambientes, label: Ambientes, type: number }
+      - { name: dormitorios, label: Dormitorios, type: number }
+      - { name: banos, label: Baños, type: number }
+      - { name: superficieTotal, label: "Superficie total (m²)", type: number }
+      - { name: superficieCubierta, label: "Superficie cubierta (m²)", type: number }
+      - { name: cochera, label: Tiene cochera, type: boolean }
+      - { name: descripcion, label: "Descripción (dejá una línea en blanco entre párrafos)", type: text }
+      - { name: caracteristicas, label: Características, type: string, list: true }
+      - { name: fotos, label: "Fotos (la primera es la portada)", type: image, list: true }

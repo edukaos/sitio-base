@@ -1,0 +1,42 @@
+{
+  "titulo": "Tasaciones",
+  "slug": "tasaciones",
+  "descripcion": "Tasación de propiedades sin cargo en Buenos Aires. Conocé el valor real de tu casa o departamento.",
+  "secciones": [
+    {
+      "tipo": "hero",
+      "variante": "centrado",
+      "etiqueta": "Sin cargo y sin compromiso",
+      "titulo": "¿Cuánto vale tu propiedad?",
+      "subtitulo": "Un tasador matriculado visita tu propiedad y te entrega un informe con el valor de mercado, basado en operaciones reales de la zona.",
+      "boton": { "texto": "Pedir tasación", "enlace": "#contacto" },
+      "botonSecundario": { "texto": "", "enlace": "" },
+      "imagen": ""
+    },
+    {
+      "tipo": "servicios",
+      "titulo": "Cómo funciona",
+      "items": [
+        { "icono": "chat", "titulo": "1. Nos contactás", "texto": "Escribinos por WhatsApp o completá el formulario con los datos de tu propiedad." },
+        { "icono": "casa", "titulo": "2. Visitamos tu propiedad", "texto": "Coordinamos una visita de 30 minutos en el horario que te quede cómodo." },
+        { "icono": "documento", "titulo": "3. Recibís el informe", "texto": "En 48 horas te enviamos la tasación con comparables y recomendaciones de precio." }
+      ]
+    },
+    {
+      "tipo": "preguntas",
+      "titulo": "Preguntas frecuentes",
+      "items": [
+        { "pregunta": "¿La tasación tiene costo?", "respuesta": "No. La tasación es sin cargo y no te obliga a vender ni a publicar con nosotros." },
+        { "pregunta": "¿Cuánto tarda?", "respuesta": "La visita dura unos 30 minutos y el informe lo recibís dentro de las 48 horas." },
+        { "pregunta": "¿Tasan en todo Buenos Aires?", "respuesta": "Trabajamos en toda la Ciudad de Buenos Aires y en zona norte del conurbano." }
+      ]
+    },
+    {
+      "tipo": "contacto",
+      "titulo": "Pedí tu tasación",
+      "subtitulo": "Dejanos tus datos y la dirección de la propiedad. Te contactamos en el día.",
+      "mostrarFormulario": true,
+      "mostrarMapa": false
+    }
+  ]
+}

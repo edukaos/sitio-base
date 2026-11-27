@@ -1,0 +1,28 @@
+{
+  "titulo": "2 ambientes a estrenar con amenities",
+  "slug": "bel-2amb-estrenar",
+  "operacion": "venta",
+  "tipo": "departamento",
+  "destacada": false,
+  "precio": 128000,
+  "moneda": "USD",
+  "expensas": 70000,
+  "barrio": "Belgrano",
+  "direccion": "Juramento 2500",
+  "ambientes": 2,
+  "dormitorios": 1,
+  "banos": 1,
+  "superficieTotal": 48,
+  "superficieCubierta": 44,
+  "cochera": false,
+  "descripcion": "Departamento a estrenar en edificio con pileta, gimnasio y laundry. Ideal inversión o primera vivienda, a metros de la estación Juramento.",
+  "caracteristicas": [
+    "A estrenar",
+    "Pileta",
+    "Gimnasio",
+    "Laundry",
+    "Apto profesional"
+  ],
+  "estado": "disponible",
+  "fotos": []
+}

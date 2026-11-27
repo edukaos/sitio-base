@@ -1,0 +1,30 @@
+{
+  "nombre": "Altura Propiedades",
+  "eslogan": "Compra, venta y alquiler de propiedades en Buenos Aires",
+  "logo": "",
+  "tema": "profesional",
+  "colorPrincipal": "#0f4c5c",
+  "menu": [
+    { "texto": "Propiedades", "enlace": "/propiedades" },
+    { "texto": "Venta", "enlace": "/propiedades?operacion=venta" },
+    { "texto": "Alquiler", "enlace": "/propiedades?operacion=alquiler" },
+    { "texto": "Tasaciones", "enlace": "/tasaciones" },
+    { "texto": "Contacto", "enlace": "/#contacto" }
+  ],
+  "contacto": {
+    "telefono": "+54 11 4789-1234",
+    "email": "info@alturapropiedades.com.ar",
+    "direccion": "Av. Cabildo 2040, Belgrano, CABA",
+    "horarios": "Lunes a viernes de 10 a 19 h · Sábados de 10 a 13 h",
+    "whatsapp": "+54 9 11 6000-1234",
+    "mensajeWhatsapp": "Hola, quiero hacer una consulta sobre una propiedad."
+  },
+  "redes": {
+    "instagram": "https://instagram.com/",
+    "facebook": "https://facebook.com/",
+    "linkedin": "",
+    "tiktok": ""
+  },
+  "formularioClave": "",
+  "seoImagen": ""
+}

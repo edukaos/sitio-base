@@ -6,14 +6,15 @@ import Cabecera from '../components/Cabecera.astro';
 import Pie from '../components/Pie.astro';
 import WhatsappFlotante from '../components/WhatsappFlotante.astro';
 
-interface Props { titulo?: string; descripcion?: string; esInicio?: boolean }
-const { titulo, descripcion, esInicio = false } = Astro.props;
+interface Props { titulo?: string; descripcion?: string; esInicio?: boolean; imagen?: string }
+const { titulo, descripcion, esInicio = false, imagen } = Astro.props;
 
 const tema = temaValido(sitio.tema);
 const color = /^#[0-9a-f]{3,8}$/i.test(sitio.colorPrincipal ?? '') ? sitio.colorPrincipal : '';
 const tituloCompleto = esInicio || !titulo ? `${sitio.nombre}${sitio.eslogan ? ` | ${sitio.eslogan}` : ''}` : `${titulo} | ${sitio.nombre}`;
 const desc = descripcion || sitio.eslogan || '';
-const imagenSeo = sitio.seoImagen ? new URL(sitio.seoImagen, Astro.site ?? Astro.url).href : undefined;
+const fuenteImagen = imagen || sitio.seoImagen;
+const imagenSeo = fuenteImagen ? new URL(fuenteImagen, Astro.site ?? Astro.url).href : undefined;
 ---
 <!doctype html>
 <html lang="es" data-tema={tema} style={color ? `--primario: ${color}` : undefined}>

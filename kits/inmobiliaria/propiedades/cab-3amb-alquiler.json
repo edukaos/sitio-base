@@ -1,0 +1,27 @@
+{
+  "titulo": "Departamento 3 ambientes en alquiler",
+  "slug": "cab-3amb-alquiler",
+  "operacion": "alquiler",
+  "tipo": "departamento",
+  "destacada": true,
+  "precio": 850000,
+  "moneda": "ARS",
+  "expensas": 120000,
+  "barrio": "Caballito",
+  "direccion": "Av. Pedro Goyena 900",
+  "ambientes": 3,
+  "dormitorios": 2,
+  "banos": 1,
+  "superficieTotal": 72,
+  "superficieCubierta": 68,
+  "cochera": true,
+  "descripcion": "Muy lindo departamento frente a Parque Rivadavia, con cochera fija. Disponible desde el mes próximo. Contrato por 3 años.",
+  "caracteristicas": [
+    "Cochera fija",
+    "Frente al parque",
+    "Balcón",
+    "Lavadero independiente"
+  ],
+  "estado": "disponible",
+  "fotos": []
+}

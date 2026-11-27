@@ -1,0 +1,27 @@
+{
+  "titulo": "Monoambiente amueblado",
+  "slug": "pal-mono-amueblado",
+  "operacion": "alquiler",
+  "tipo": "departamento",
+  "destacada": false,
+  "precio": 520000,
+  "moneda": "ARS",
+  "expensas": 60000,
+  "barrio": "Palermo",
+  "direccion": "Av. Santa Fe 4300",
+  "ambientes": 1,
+  "dormitorios": 0,
+  "banos": 1,
+  "superficieTotal": 32,
+  "superficieCubierta": 32,
+  "cochera": false,
+  "descripcion": "Monoambiente totalmente amueblado y equipado, a una cuadra del subte D. Listo para entrar a vivir.",
+  "caracteristicas": [
+    "Amueblado",
+    "Cerca del subte",
+    "Aire acondicionado",
+    "Wi-Fi"
+  ],
+  "estado": "disponible",
+  "fotos": []
+}

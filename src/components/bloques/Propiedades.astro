@@ -1,0 +1,40 @@
+---
+// Bloque: grilla de propiedades (destacadas, en venta, en alquiler o todas)
+import Encabezado from '../Encabezado.astro';
+import Boton from '../Boton.astro';
+import TarjetaPropiedad from '../TarjetaPropiedad.astro';
+import { propiedades } from '../../lib/propiedades';
+
+interface Props {
+  ancla?: string;
+  etiqueta?: string;
+  titulo?: string;
+  subtitulo?: string;
+  mostrar?: 'destacadas' | 'venta' | 'alquiler' | 'todas';
+  cantidad?: number;
+}
+const { ancla = 'propiedades', etiqueta, titulo, subtitulo, mostrar = 'destacadas', cantidad = 6 } = Astro.props;
+
+const disponibles = propiedades.filter((p) => p.estado !== 'vendida');
+let lista =
+  mostrar === 'destacadas' ? disponibles.filter((p) => p.destacada)
+  : mostrar === 'venta' ? disponibles.filter((p) => p.operacion === 'venta')
+  : mostrar === 'alquiler' ? disponibles.filter((p) => p.operacion !== 'venta')
+  : disponibles;
+if (lista.length === 0) lista = disponibles;
+lista = lista.slice(0, Number(cantidad) || 6);
+const enlaceTodas = mostrar === 'venta' || mostrar === 'alquiler' ? `/propiedades?operacion=${mostrar}` : '/propiedades';
+---
+{lista.length > 0 && (
+  <section id={ancla} class="py-20 md:py-28">
+    <div class="mx-auto max-w-6xl px-5 sm:px-8">
+      <Encabezado etiqueta={etiqueta} titulo={titulo} subtitulo={subtitulo} />
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {lista.map((p) => <TarjetaPropiedad propiedad={p} />)}
+      </div>
+      <div class="mt-12 text-center">
+        <Boton texto="Ver todas las propiedades" enlace={enlaceTodas} estilo="secundario" />
+      </div>
+    </div>
+  </section>
+)}

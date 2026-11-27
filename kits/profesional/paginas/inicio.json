@@ -1,0 +1,84 @@
+{
+  "titulo": "Inicio",
+  "slug": "inicio",
+  "descripcion": "Estudio contable y legal en CABA. Impuestos, sociedades, sueldos y asesoramiento para pymes y profesionales.",
+  "secciones": [
+    {
+      "tipo": "hero",
+      "variante": "dividido",
+      "etiqueta": "Más de 20 años acompañando pymes",
+      "titulo": "Ocupate de tu negocio. Los números y los papeles, dejalos en nuestras manos.",
+      "subtitulo": "Asesoramiento contable, impositivo y legal claro, a tiempo y sin vueltas.",
+      "puntos": ["Primera consulta sin cargo", "Respuesta en menos de 24 h", "Atención presencial y online"],
+      "boton": { "texto": "Pedí tu consulta", "enlace": "/#contacto" },
+      "botonSecundario": { "texto": "Ver servicios", "enlace": "/#servicios" },
+      "imagen": ""
+    },
+    {
+      "tipo": "servicios",
+      "etiqueta": "Servicios",
+      "titulo": "Todo lo que tu empresa necesita, en un solo lugar",
+      "subtitulo": "Trabajamos con pymes, comercios y profesionales independientes.",
+      "items": [
+        { "icono": "grafico", "titulo": "Contabilidad", "texto": "Balances, registros y reportes mensuales para que sepas cómo está tu negocio." },
+        { "icono": "documento", "titulo": "Impuestos", "texto": "Liquidación de IVA, Ganancias, Ingresos Brutos y monotributo, siempre al día." },
+        { "icono": "balanza", "titulo": "Asesoramiento legal", "texto": "Contratos, sociedades y consultas laborales con abogados especializados." },
+        { "icono": "personas", "titulo": "Sueldos", "texto": "Liquidación de haberes, cargas sociales y altas y bajas de personal." },
+        { "icono": "maletin", "titulo": "Sociedades", "texto": "Constitución de SAS, SRL y SA, y todos los trámites ante IGJ." },
+        { "icono": "escudo", "titulo": "Planificación fiscal", "texto": "Te ayudamos a pagar lo justo, de forma legal y ordenada." }
+      ]
+    },
+    {
+      "tipo": "numeros",
+      "items": [
+        { "valor": "+20", "etiqueta": "años de experiencia" },
+        { "valor": "350", "etiqueta": "clientes activos" },
+        { "valor": "12", "etiqueta": "profesionales" },
+        { "valor": "24 h", "etiqueta": "tiempo de respuesta" }
+      ]
+    },
+    {
+      "tipo": "nosotros",
+      "etiqueta": "Quiénes somos",
+      "titulo": "Un equipo cercano, que habla tu idioma",
+      "texto": "Somos un estudio familiar fundado en 2004. Combinamos la experiencia de contadores y abogados para darte una respuesta completa, sin que tengas que ir de un lado a otro.\n\nNos gusta explicar las cosas simples: vas a entender qué pagás, por qué y cuándo.",
+      "imagen": "",
+      "imagenIzquierda": true,
+      "puntos": ["Contadores y abogados matriculados", "Un asesor asignado a tu cuenta", "Reportes claros todos los meses", "Atención en todo el país"]
+    },
+    {
+      "tipo": "testimonios",
+      "etiqueta": "Testimonios",
+      "titulo": "Lo que dicen nuestros clientes",
+      "items": [
+        { "texto": "Desde que trabajamos con el estudio, nunca más tuvimos un vencimiento atrasado. Responden rápido y explican todo.", "nombre": "Laura Méndez", "cargo": "Dueña de Panadería La Espiga" },
+        { "texto": "Nos ayudaron a armar la SAS y a ordenar los números del primer año. Súper recomendables.", "nombre": "Martín Rossi", "cargo": "Cofundador de Nube Software" },
+        { "texto": "Profesionales y muy humanos. Se nota que les importa que al cliente le vaya bien.", "nombre": "Carolina Díaz", "cargo": "Arquitecta independiente" }
+      ]
+    },
+    {
+      "tipo": "preguntas",
+      "etiqueta": "Preguntas frecuentes",
+      "titulo": "¿Tenés dudas?",
+      "items": [
+        { "pregunta": "¿La primera consulta tiene costo?", "respuesta": "No. La primera reunión es sin cargo, para conocer tu situación y proponerte un plan." },
+        { "pregunta": "¿Atienden de forma online?", "respuesta": "Sí. Podemos hacer todo por videollamada, email y WhatsApp, estés donde estés." },
+        { "pregunta": "¿Trabajan con monotributistas?", "respuesta": "Claro. Tenemos planes especiales para monotributistas y profesionales independientes." }
+      ]
+    },
+    {
+      "tipo": "llamado",
+      "titulo": "¿Empezamos a ordenar tus números?",
+      "texto": "Escribinos hoy y coordinamos tu primera consulta sin cargo.",
+      "boton": { "texto": "Quiero mi consulta", "enlace": "/#contacto" }
+    },
+    {
+      "tipo": "contacto",
+      "etiqueta": "Contacto",
+      "titulo": "Hablemos",
+      "subtitulo": "Elegí el medio que te resulte más cómodo. Te respondemos en el día.",
+      "mostrarFormulario": true,
+      "mostrarMapa": true
+    }
+  ]
+}

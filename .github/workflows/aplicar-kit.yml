@@ -1,0 +1,39 @@
+# Reemplaza el contenido del sitio por el de un kit (Profesional, Inmobiliaria, ...).
+# Uso: pestaña "Actions" → "Aplicar kit" → "Run workflow" → elegir kit → "Run workflow".
+name: Aplicar kit
+
+on:
+  workflow_dispatch:
+    inputs:
+      kit:
+        description: "Kit a aplicar (ATENCIÓN: reemplaza el contenido actual del sitio)"
+        type: choice
+        options:
+          - profesional
+          - inmobiliaria
+
+permissions:
+  contents: write
+
+jobs:
+  aplicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Copiar contenido del kit
+        env:
+          KIT: ${{ inputs.kit }}
+        run: |
+          test -d "kits/$KIT" || { echo "No existe el kit $KIT"; exit 1; }
+          rm -rf src/content/paginas src/content/propiedades src/content/productos
+          mkdir -p src/content
+          cp -r "kits/$KIT/." src/content/
+      - name: Guardar cambios
+        env:
+          KIT: ${{ inputs.kit }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add -A src/content
+          git commit -m "Aplicar kit: $KIT" || echo "Sin cambios"
+          git push

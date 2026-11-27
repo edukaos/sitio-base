@@ -1,0 +1,73 @@
+{
+  "titulo": "Inicio",
+  "slug": "inicio",
+  "descripcion": "Inmobiliaria en Belgrano. Casas, departamentos y PH en venta y alquiler en Buenos Aires. Tasaciones sin cargo.",
+  "secciones": [
+    {
+      "tipo": "hero",
+      "variante": "fondo",
+      "etiqueta": "Inmobiliaria en Buenos Aires desde 1998",
+      "titulo": "Encontrá el lugar donde empieza tu próxima historia",
+      "subtitulo": "Casas, departamentos y PH en venta y alquiler, con un equipo que te acompaña en cada paso.",
+      "boton": { "texto": "Ver propiedades", "enlace": "/propiedades" },
+      "botonSecundario": { "texto": "Tasá tu propiedad", "enlace": "/tasaciones" },
+      "imagen": ""
+    },
+    {
+      "tipo": "buscador",
+      "titulo": "¿Qué estás buscando?"
+    },
+    {
+      "tipo": "propiedades",
+      "etiqueta": "Destacadas",
+      "titulo": "Propiedades destacadas",
+      "subtitulo": "Una selección de nuestras mejores oportunidades.",
+      "mostrar": "destacadas",
+      "cantidad": 6
+    },
+    {
+      "tipo": "servicios",
+      "etiqueta": "Servicios",
+      "titulo": "Te acompañamos en todo el proceso",
+      "items": [
+        { "icono": "casa", "titulo": "Venta", "texto": "Publicamos tu propiedad en los principales portales y la mostramos a compradores calificados." },
+        { "icono": "documento", "titulo": "Alquiler", "texto": "Buscamos inquilinos, verificamos garantías y gestionamos el contrato de punta a punta." },
+        { "icono": "grafico", "titulo": "Tasaciones", "texto": "Tasación profesional y sin cargo, basada en operaciones reales de la zona." },
+        { "icono": "balanza", "titulo": "Asesoramiento legal", "texto": "Escribanos y abogados de confianza para que operes con total tranquilidad." }
+      ]
+    },
+    {
+      "tipo": "numeros",
+      "items": [
+        { "valor": "+25", "etiqueta": "años en el barrio" },
+        { "valor": "1.800", "etiqueta": "operaciones cerradas" },
+        { "valor": "150", "etiqueta": "propiedades activas" },
+        { "valor": "4,9★", "etiqueta": "calificación en Google" }
+      ]
+    },
+    {
+      "tipo": "testimonios",
+      "etiqueta": "Testimonios",
+      "titulo": "Familias que ya encontraron su lugar",
+      "items": [
+        { "texto": "Vendimos el departamento en menos de dos meses y al precio que esperábamos. Siempre nos tuvieron al tanto de todo.", "nombre": "Andrea y Pablo", "cargo": "Vendieron en Núñez" },
+        { "texto": "Era mi primer alquiler y me explicaron cada paso del contrato. Súper claros y atentos.", "nombre": "Julieta Romero", "cargo": "Alquiló en Palermo" },
+        { "texto": "La tasación fue muy precisa y nos ayudó a decidir. Gran equipo humano.", "nombre": "Ricardo Gómez", "cargo": "Vendió en Belgrano" }
+      ]
+    },
+    {
+      "tipo": "llamado",
+      "titulo": "¿Querés vender o alquilar tu propiedad?",
+      "texto": "Pedí una tasación sin cargo y te decimos cuánto vale en el mercado actual.",
+      "boton": { "texto": "Pedir tasación", "enlace": "/tasaciones" }
+    },
+    {
+      "tipo": "contacto",
+      "etiqueta": "Contacto",
+      "titulo": "Visitanos o escribinos",
+      "subtitulo": "Estamos en el corazón de Belgrano. Coordinamos visitas todos los días.",
+      "mostrarFormulario": true,
+      "mostrarMapa": true
+    }
+  ]
+}

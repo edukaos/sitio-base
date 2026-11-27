@@ -1,4 +1,4 @@
-# Compila el sitio en cada cambio para detectar errores antes de publicar.
+# Compila el sitio (y cada kit) en cada cambio para detectar errores antes de publicar.
 name: Verificar sitio
 
 on:
@@ -8,10 +8,26 @@ on:
 jobs:
   compilar:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        contenido: [actual, profesional, inmobiliaria]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
       - run: npm install --no-audit --no-fund
+      - name: Usar contenido del kit
+        if: matrix.contenido != 'actual'
+        env:
+          KIT: ${{ matrix.contenido }}
+        run: |
+          rm -rf src/content/paginas src/content/propiedades src/content/productos
+          cp -r "kits/$KIT/." src/content/
       - run: npm run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sitio-${{ matrix.contenido }}
+          path: dist
+          retention-days: 3

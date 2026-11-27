@@ -1,0 +1,144 @@
+---
+import Icono from './Icono.astro';
+import TarjetaPropiedad from './TarjetaPropiedad.astro';
+import { sitio, enlaceWhatsapp } from '../lib/datos';
+import { type Propiedad, propiedades, formatoPrecio, nombresOperacion, nombresTipo } from '../lib/propiedades';
+
+interface Props { propiedad: Propiedad }
+const { propiedad: p } = Astro.props;
+
+const fotos = p.fotos ?? [];
+const mensaje = `Hola, me interesa la propiedad "${p.titulo}" (código: ${p.slug}). ¿Me pasan más información?`;
+const wa = enlaceWhatsapp(sitio.contacto?.whatsapp, mensaje);
+const email = sitio.contacto?.email;
+const ubicacion = [p.direccion, p.barrio].filter(Boolean).join(', ');
+const mapa = ubicacion ? `https://www.google.com/maps?q=${encodeURIComponent(ubicacion)}&output=embed` : '';
+
+const datos = [
+  { icono: 'casa', etiqueta: 'Tipo', valor: nombresTipo[p.tipo] ?? p.tipo },
+  p.superficieTotal && { icono: 'grafico', etiqueta: 'Sup. total', valor: `${p.superficieTotal} m²` },
+  p.superficieCubierta && { icono: 'grafico', etiqueta: 'Sup. cubierta', valor: `${p.superficieCubierta} m²` },
+  p.ambientes && { icono: 'maletin', etiqueta: 'Ambientes', valor: p.ambientes },
+  p.dormitorios && { icono: 'personas', etiqueta: 'Dormitorios', valor: p.dormitorios },
+  p.banos && { icono: 'check', etiqueta: 'Baños', valor: p.banos },
+  p.cochera !== undefined && { icono: 'camion', etiqueta: 'Cochera', valor: p.cochera ? 'Sí' : 'No' },
+  p.expensas && { icono: 'documento', etiqueta: 'Expensas', valor: `$ ${new Intl.NumberFormat('es-AR').format(p.expensas)}` },
+].filter(Boolean) as { icono: string; etiqueta: string; valor: string | number }[];
+
+const parrafos = (p.descripcion ?? '').split(/\n\s*\n/).map((t) => t.trim()).filter(Boolean);
+const relacionadas = propiedades.filter((o) => o.slug !== p.slug && o.operacion === p.operacion && o.estado !== 'vendida').slice(0, 3);
+const noDisponible = p.estado === 'vendida' ? (p.operacion === 'venta' ? 'Vendida' : 'Alquilada') : p.estado === 'reservada' ? 'Reservada' : '';
+---
+<article class="mx-auto max-w-6xl px-5 py-10 sm:px-8">
+  <nav class="mb-6 text-sm text-suave" aria-label="Ruta">
+    <a href="/propiedades" class="hover:text-primario">← Volver a propiedades</a>
+  </nav>
+
+  <!-- Galería -->
+  {fotos.length > 0 ? (
+    <div class="grid gap-3 md:grid-cols-4 md:grid-rows-2">
+      <img id="foto-principal" src={fotos[0]} alt={p.titulo} class="aspect-[4/3] w-full rounded-tema object-cover md:col-span-3 md:row-span-2 md:aspect-auto md:h-full" />
+      {fotos.length > 1 && (
+        <div class="flex gap-3 overflow-x-auto md:col-span-1 md:row-span-2 md:flex-col md:overflow-visible">
+          {fotos.slice(0, 6).map((f, i) => (
+            <button type="button" data-foto={f} class={`miniatura shrink-0 overflow-hidden rounded-tema ring-primario ring-offset-2 md:flex-1 ${i === 0 ? 'ring-2' : ''}`} aria-label={`Ver foto ${i + 1}`}>
+              <img src={f} alt="" loading="lazy" class="h-20 w-28 object-cover md:h-full md:w-full" />
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  ) : (
+    <div class="flex aspect-[21/9] w-full items-center justify-center rounded-tema bg-linear-to-br from-primario/15 to-acento/25 text-primario/60">
+      <Icono nombre="casa" class="h-24 w-24" />
+    </div>
+  )}
+
+  <div class="mt-10 grid gap-10 lg:grid-cols-3">
+    <div class="lg:col-span-2">
+      <div class="flex flex-wrap gap-2">
+        <span class="rounded-tema bg-primario px-3 py-1 text-sm font-semibold text-sobre-primario">{nombresOperacion[p.operacion] ?? p.operacion}</span>
+        {noDisponible && <span class="rounded-tema bg-texto px-3 py-1 text-sm font-semibold text-white">{noDisponible}</span>}
+      </div>
+      <h1 class="mt-4 text-3xl font-bold text-texto sm:text-4xl">{p.titulo}</h1>
+      {ubicacion && <p class="mt-2 flex items-center gap-2 text-suave"><Icono nombre="ubicacion" class="h-5 w-5" />{ubicacion}</p>}
+
+      <dl class="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
+        {datos.map((d) => (
+          <div class="rounded-tema bg-superficie p-4">
+            <dt class="flex items-center gap-1.5 text-xs uppercase tracking-wide text-suave"><Icono nombre={d.icono} class="h-4 w-4" />{d.etiqueta}</dt>
+            <dd class="mt-1 text-lg font-semibold text-texto">{d.valor}</dd>
+          </div>
+        ))}
+      </dl>
+
+      {parrafos.length > 0 && (
+        <section class="mt-10">
+          <h2 class="text-2xl font-bold text-texto">Descripción</h2>
+          <div class="mt-4 space-y-4 text-suave">{parrafos.map((t) => <p>{t}</p>)}</div>
+        </section>
+      )}
+
+      {(p.caracteristicas?.length ?? 0) > 0 && (
+        <section class="mt-10">
+          <h2 class="text-2xl font-bold text-texto">Características</h2>
+          <ul class="mt-4 grid gap-3 sm:grid-cols-2">
+            {p.caracteristicas!.map((c) => (
+              <li class="flex items-center gap-3 text-texto"><span class="text-primario"><Icono nombre="check" class="h-5 w-5" /></span>{c}</li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {mapa && (
+        <section class="mt-10">
+          <h2 class="text-2xl font-bold text-texto">Ubicación</h2>
+          <iframe src={mapa} title={`Mapa: ${ubicacion}`} loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="mt-4 h-80 w-full rounded-tema border border-borde"></iframe>
+        </section>
+      )}
+    </div>
+
+    <!-- Columna de contacto -->
+    <aside class="lg:sticky lg:top-24 lg:self-start">
+      <div class="tarjeta p-6">
+        <p class="text-sm text-suave">{nombresOperacion[p.operacion] ?? p.operacion}</p>
+        <p class="font-titulos text-3xl font-bold text-primario">{formatoPrecio(p)}</p>
+        {p.expensas && <p class="mt-1 text-sm text-suave">+ $ {new Intl.NumberFormat('es-AR').format(p.expensas)} de expensas</p>}
+        <div class="mt-6 space-y-3">
+          {wa && (
+            <a href={wa} target="_blank" rel="noopener" class="flex w-full items-center justify-center gap-2 rounded-tema bg-[#25D366] px-5 py-3 font-semibold text-white transition-opacity hover:opacity-90">
+              <Icono nombre="chat" class="h-5 w-5" /> Consultar por WhatsApp
+            </a>
+          )}
+          {email && (
+            <a href={`mailto:${email}?subject=${encodeURIComponent(`Consulta: ${p.titulo}`)}`} class="flex w-full items-center justify-center gap-2 rounded-tema border border-borde px-5 py-3 font-semibold text-texto transition-colors hover:border-primario hover:text-primario">
+              <Icono nombre="email" class="h-5 w-5" /> Consultar por email
+            </a>
+          )}
+        </div>
+        <p class="mt-5 text-center text-xs text-suave">Código de propiedad: {p.slug}</p>
+      </div>
+    </aside>
+  </div>
+
+  {relacionadas.length > 0 && (
+    <section class="mt-20">
+      <h2 class="mb-6 text-2xl font-bold text-texto">También te pueden interesar</h2>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {relacionadas.map((r) => <TarjetaPropiedad propiedad={r} />)}
+      </div>
+    </section>
+  )}
+</article>
+
+<script>
+  const principal = document.getElementById('foto-principal') as HTMLImageElement | null;
+  document.querySelectorAll<HTMLButtonElement>('.miniatura').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      if (!principal) return;
+      principal.src = btn.dataset.foto!;
+      document.querySelectorAll('.miniatura').forEach((b) => b.classList.remove('ring-2'));
+      btn.classList.add('ring-2');
+    });
+  });
+</script>

@@ -1,0 +1,25 @@
+{
+  "titulo": "Local comercial sobre avenida",
+  "slug": "col-local-avenida",
+  "operacion": "alquiler",
+  "tipo": "local",
+  "destacada": true,
+  "precio": 1400000,
+  "moneda": "ARS",
+  "barrio": "Colegiales",
+  "direccion": "Av. Federico Lacroze 3300",
+  "ambientes": 2,
+  "banos": 1,
+  "superficieTotal": 90,
+  "superficieCubierta": 90,
+  "cochera": false,
+  "descripcion": "Local a la calle con excelente visibilidad y gran circulación peatonal. Vidriera de 6 metros, depósito y baño.",
+  "caracteristicas": [
+    "Vidriera de 6 m",
+    "Depósito",
+    "Alto tránsito",
+    "Apto gastronomía"
+  ],
+  "estado": "disponible",
+  "fotos": []
+}

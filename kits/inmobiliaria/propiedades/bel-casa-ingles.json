@@ -1,0 +1,26 @@
+{
+  "titulo": "Casa estilo inglés",
+  "slug": "bel-casa-ingles",
+  "operacion": "venta",
+  "tipo": "casa",
+  "destacada": false,
+  "estado": "reservada",
+  "precio": 380000,
+  "moneda": "USD",
+  "barrio": "Belgrano",
+  "direccion": "La Pampa 1600",
+  "ambientes": 6,
+  "dormitorios": 4,
+  "banos": 3,
+  "superficieTotal": 280,
+  "superficieCubierta": 240,
+  "cochera": true,
+  "descripcion": "Clásica casa estilo inglés en Belgrano R, con jardín al fondo y detalles de época conservados.",
+  "caracteristicas": [
+    "Jardín",
+    "Pisos de roble",
+    "Cochera",
+    "Altillo"
+  ],
+  "fotos": []
+}

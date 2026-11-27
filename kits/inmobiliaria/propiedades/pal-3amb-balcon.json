@@ -1,0 +1,29 @@
+{
+  "titulo": "Luminoso 3 ambientes con balcón",
+  "slug": "pal-3amb-balcon",
+  "operacion": "venta",
+  "tipo": "departamento",
+  "destacada": true,
+  "precio": 189000,
+  "moneda": "USD",
+  "expensas": 95000,
+  "barrio": "Palermo",
+  "direccion": "Gorriti 4800",
+  "ambientes": 3,
+  "dormitorios": 2,
+  "banos": 1,
+  "superficieTotal": 78,
+  "superficieCubierta": 70,
+  "cochera": false,
+  "descripcion": "Departamento al frente, muy luminoso, a dos cuadras de Plaza Serrano.\n\nLiving comedor con salida a balcón corrido, cocina integrada con barra, dos dormitorios con placard y baño completo. Edificio con amenities y seguridad.",
+  "caracteristicas": [
+    "Balcón al frente",
+    "Cocina integrada",
+    "Aire acondicionado",
+    "Edificio con SUM",
+    "Apto crédito",
+    "Luminoso"
+  ],
+  "estado": "disponible",
+  "fotos": []
+}

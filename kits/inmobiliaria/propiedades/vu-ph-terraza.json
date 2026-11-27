@@ -1,0 +1,27 @@
+{
+  "titulo": "PH reciclado con terraza propia",
+  "slug": "vu-ph-terraza",
+  "operacion": "venta",
+  "tipo": "ph",
+  "destacada": true,
+  "precio": 165000,
+  "moneda": "USD",
+  "barrio": "Villa Urquiza",
+  "direccion": "Bauness 2100",
+  "ambientes": 4,
+  "dormitorios": 2,
+  "banos": 2,
+  "superficieTotal": 110,
+  "superficieCubierta": 85,
+  "cochera": false,
+  "descripcion": "PH al fondo, sin expensas, totalmente reciclado a nuevo con materiales de primera calidad.\n\nAmplio living comedor, cocina abierta, dos dormitorios y escritorio. Terraza propia de 25 m² con parrilla.",
+  "caracteristicas": [
+    "Sin expensas",
+    "Terraza con parrilla",
+    "Reciclado a nuevo",
+    "Escritorio",
+    "Patio"
+  ],
+  "estado": "disponible",
+  "fotos": []
+}
