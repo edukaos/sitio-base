@@ -28,10 +28,9 @@ jobs:
             cp -r "kits/$KIT/." src/content/
             npm run build
             npx astro preview --port 4321 > /dev/null 2>&1 &
-            PID=$!
             npx --yes wait-on http://localhost:4321 -t 30000
             node scripts/capturas.mjs "/tmp/capturas/$KIT" "$@"
-            kill $PID
+            pkill -f "astro preview" || true; sleep 1
           }
           capturar inmobiliaria / /propiedades /propiedades/pal-3amb-balcon /tasaciones
           capturar profesional /
