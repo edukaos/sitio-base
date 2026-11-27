@@ -1,0 +1,218 @@
+# Configuración del panel de edición (Pages CMS: https://app.pagescms.org)
+# Define qué puede editar el cliente. El diseño queda protegido.
+
+media:
+  input: public/images
+  output: /images
+
+components:
+  boton:
+    type: object
+    fields:
+      - name: texto
+        label: Texto del botón
+        type: string
+      - name: enlace
+        label: Enlace (ej. /#contacto o https://...)
+        type: string
+
+content:
+  - name: sitio
+    label: Datos del sitio
+    type: file
+    path: src/content/sitio.json
+    format: json
+    fields:
+      - name: nombre
+        label: Nombre del negocio
+        type: string
+        required: true
+      - name: eslogan
+        label: Frase corta (eslogan)
+        type: string
+      - name: logo
+        label: Logo
+        type: image
+      - name: tema
+        label: Estilo de diseño
+        type: select
+        options:
+          values:
+            - { value: profesional, label: "Profesional" }
+            - { value: sabor, label: "Sabor (gastronomía)" }
+            - { value: startup, label: "Startup" }
+            - { value: bienestar, label: "Bienestar" }
+            - { value: barrio, label: "Barrio (comercios)" }
+      - name: colorPrincipal
+        label: Color principal (opcional, ej. #1e3a5f)
+        type: string
+      - name: menu
+        label: Menú
+        type: object
+        list: true
+        fields:
+          - name: texto
+            label: Texto
+            type: string
+          - name: enlace
+            label: Enlace
+            type: string
+      - name: contacto
+        label: Contacto
+        type: object
+        fields:
+          - { name: telefono, label: Teléfono, type: string }
+          - { name: whatsapp, label: "WhatsApp (con código de país, ej. +54 9 11 5555-1234)", type: string }
+          - { name: mensajeWhatsapp, label: Mensaje inicial de WhatsApp, type: string }
+          - { name: email, label: Email, type: string }
+          - { name: direccion, label: Dirección, type: string }
+          - { name: horarios, label: Horarios, type: string }
+      - name: redes
+        label: Redes sociales
+        type: object
+        fields:
+          - { name: instagram, label: Instagram (link), type: string }
+          - { name: facebook, label: Facebook (link), type: string }
+          - { name: linkedin, label: LinkedIn (link), type: string }
+          - { name: tiktok, label: TikTok (link), type: string }
+      - name: formularioClave
+        label: Clave de Web3Forms (para recibir mensajes del formulario)
+        type: string
+      - name: seoImagen
+        label: Imagen al compartir en redes
+        type: image
+
+  - name: paginas
+    label: Páginas
+    type: collection
+    path: src/content/paginas
+    format: json
+    filename: "{fields.slug}.json"
+    view:
+      primary: titulo
+    fields:
+      - name: titulo
+        label: Título de la página
+        type: string
+        required: true
+      - name: slug
+        label: "Dirección (ej. servicios). La portada se llama: inicio"
+        type: string
+        required: true
+      - name: descripcion
+        label: Descripción para Google
+        type: text
+      - name: secciones
+        label: Secciones
+        type: block
+        list: true
+        blockKey: tipo
+        blocks:
+          - name: hero
+            label: Portada (hero)
+            fields:
+              - name: variante
+                label: Diseño
+                type: select
+                options:
+                  values:
+                    - { value: dividido, label: "Texto + imagen" }
+                    - { value: centrado, label: "Centrado" }
+                    - { value: fondo, label: "Foto de fondo" }
+              - { name: etiqueta, label: Texto pequeño superior, type: string }
+              - { name: titulo, label: Título, type: string }
+              - { name: subtitulo, label: Bajada, type: text }
+              - { name: puntos, label: Puntos destacados, type: string, list: true }
+              - { name: boton, label: Botón principal, component: boton }
+              - { name: botonSecundario, label: Botón secundario, component: boton }
+              - { name: imagen, label: Imagen, type: image }
+
+          - name: servicios
+            label: Servicios / características
+            fields:
+              - { name: ancla, label: "Ancla para el menú (ej. servicios)", type: string }
+              - { name: etiqueta, label: Texto pequeño superior, type: string }
+              - { name: titulo, label: Título, type: string }
+              - { name: subtitulo, label: Bajada, type: text }
+              - name: items
+                label: Servicios
+                type: object
+                list: true
+                fields:
+                  - name: icono
+                    label: Ícono
+                    type: select
+                    options:
+                      values: [balanza, documento, escudo, grafico, personas, reloj, estrella, corazon, casa, maletin, chat, check, telefono, email, ubicacion, rayo, hoja, regalo, camion]
+                  - { name: titulo, label: Título, type: string }
+                  - { name: texto, label: Descripción, type: text }
+
+          - name: nosotros
+            label: Sobre nosotros
+            fields:
+              - { name: ancla, label: "Ancla para el menú (ej. nosotros)", type: string }
+              - { name: etiqueta, label: Texto pequeño superior, type: string }
+              - { name: titulo, label: Título, type: string }
+              - { name: texto, label: "Texto (dejá una línea en blanco entre párrafos)", type: text }
+              - { name: imagen, label: Imagen, type: image }
+              - { name: imagenIzquierda, label: Imagen a la izquierda, type: boolean }
+              - { name: puntos, label: Puntos destacados, type: string, list: true }
+
+          - name: numeros
+            label: Números / logros
+            fields:
+              - name: items
+                label: Números
+                type: object
+                list: true
+                fields:
+                  - { name: valor, label: "Número (ej. +20)", type: string }
+                  - { name: etiqueta, label: Descripción, type: string }
+
+          - name: testimonios
+            label: Testimonios
+            fields:
+              - { name: ancla, label: Ancla para el menú, type: string }
+              - { name: etiqueta, label: Texto pequeño superior, type: string }
+              - { name: titulo, label: Título, type: string }
+              - { name: subtitulo, label: Bajada, type: text }
+              - name: items
+                label: Testimonios
+                type: object
+                list: true
+                fields:
+                  - { name: texto, label: Testimonio, type: text }
+                  - { name: nombre, label: Nombre, type: string }
+                  - { name: cargo, label: "Cargo / empresa", type: string }
+
+          - name: preguntas
+            label: Preguntas frecuentes
+            fields:
+              - { name: ancla, label: Ancla para el menú, type: string }
+              - { name: etiqueta, label: Texto pequeño superior, type: string }
+              - { name: titulo, label: Título, type: string }
+              - { name: subtitulo, label: Bajada, type: text }
+              - name: items
+                label: Preguntas
+                type: object
+                list: true
+                fields:
+                  - { name: pregunta, label: Pregunta, type: string }
+                  - { name: respuesta, label: Respuesta, type: text }
+
+          - name: llamado
+            label: Llamado a la acción
+            fields:
+              - { name: titulo, label: Título, type: string }
+              - { name: texto, label: Texto, type: text }
+              - { name: boton, label: Botón, component: boton }
+
+          - name: contacto
+            label: Contacto
+            fields:
+              - { name: ancla, label: Ancla para el menú, type: string }
+              - { name: etiqueta, label: Texto pequeño superior, type: string }
+              - { name: titulo, label: Título, type: string }
+              - { name: subtitulo, label: Bajada, type: text }
+              - { name: mostrarFormulario, label: Mostrar formulario, type: boolean }
+              - { name: mostrarMapa, label: Mostrar mapa, type: boolean }
