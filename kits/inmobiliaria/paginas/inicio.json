@@ -9,8 +9,14 @@
       "etiqueta": "Inmobiliaria en Buenos Aires desde 1998",
       "titulo": "Encontrá el lugar donde empieza tu próxima historia",
       "subtitulo": "Casas, departamentos y PH en venta y alquiler, con un equipo que te acompaña en cada paso.",
-      "boton": { "texto": "Ver propiedades", "enlace": "/propiedades" },
-      "botonSecundario": { "texto": "Tasá tu propiedad", "enlace": "/tasaciones" },
+      "boton": {
+        "texto": "Ver propiedades",
+        "enlace": "/propiedades"
+      },
+      "botonSecundario": {
+        "texto": "Tasá tu propiedad",
+        "enlace": "/tasaciones"
+      },
       "imagen": ""
     },
     {
@@ -30,19 +36,72 @@
       "etiqueta": "Servicios",
       "titulo": "Te acompañamos en todo el proceso",
       "items": [
-        { "icono": "casa", "titulo": "Venta", "texto": "Publicamos tu propiedad en los principales portales y la mostramos a compradores calificados." },
-        { "icono": "documento", "titulo": "Alquiler", "texto": "Buscamos inquilinos, verificamos garantías y gestionamos el contrato de punta a punta." },
-        { "icono": "grafico", "titulo": "Tasaciones", "texto": "Tasación profesional y sin cargo, basada en operaciones reales de la zona." },
-        { "icono": "balanza", "titulo": "Asesoramiento legal", "texto": "Escribanos y abogados de confianza para que operes con total tranquilidad." }
+        {
+          "icono": "casa",
+          "titulo": "Venta",
+          "texto": "Publicamos tu propiedad en los principales portales y la mostramos a compradores calificados."
+        },
+        {
+          "icono": "documento",
+          "titulo": "Alquiler",
+          "texto": "Buscamos inquilinos, verificamos garantías y gestionamos el contrato de punta a punta."
+        },
+        {
+          "icono": "grafico",
+          "titulo": "Tasaciones",
+          "texto": "Tasación profesional y sin cargo, basada en operaciones reales de la zona."
+        },
+        {
+          "icono": "balanza",
+          "titulo": "Asesoramiento legal",
+          "texto": "Escribanos y abogados de confianza para que operes con total tranquilidad."
+        }
       ]
     },
     {
       "tipo": "numeros",
       "items": [
-        { "valor": "+25", "etiqueta": "años en el barrio" },
-        { "valor": "1.800", "etiqueta": "operaciones cerradas" },
-        { "valor": "150", "etiqueta": "propiedades activas" },
-        { "valor": "4,9★", "etiqueta": "calificación en Google" }
+        {
+          "valor": "+25",
+          "etiqueta": "años en el barrio"
+        },
+        {
+          "valor": "1.800",
+          "etiqueta": "operaciones cerradas"
+        },
+        {
+          "valor": "150",
+          "etiqueta": "propiedades activas"
+        },
+        {
+          "valor": "4,9★",
+          "etiqueta": "calificación en Google"
+        }
+      ]
+    },
+    {
+      "tipo": "equipo",
+      "etiqueta": "Nuestro equipo",
+      "titulo": "Asesores que conocen el barrio",
+      "personas": [
+        {
+          "foto": "",
+          "nombre": "Gabriela Ortiz",
+          "cargo": "Martillera y corredora pública",
+          "texto": "Mat. CUCICBA 1234. Fundadora de Altura."
+        },
+        {
+          "foto": "",
+          "nombre": "Nicolás Herrera",
+          "cargo": "Asesor de ventas",
+          "texto": "Especialista en Belgrano y Núñez."
+        },
+        {
+          "foto": "",
+          "nombre": "Lucía Benítez",
+          "cargo": "Alquileres",
+          "texto": "Contratos, garantías y administración."
+        }
       ]
     },
     {
@@ -50,16 +109,31 @@
       "etiqueta": "Testimonios",
       "titulo": "Familias que ya encontraron su lugar",
       "items": [
-        { "texto": "Vendimos el departamento en menos de dos meses y al precio que esperábamos. Siempre nos tuvieron al tanto de todo.", "nombre": "Andrea y Pablo", "cargo": "Vendieron en Núñez" },
-        { "texto": "Era mi primer alquiler y me explicaron cada paso del contrato. Súper claros y atentos.", "nombre": "Julieta Romero", "cargo": "Alquiló en Palermo" },
-        { "texto": "La tasación fue muy precisa y nos ayudó a decidir. Gran equipo humano.", "nombre": "Ricardo Gómez", "cargo": "Vendió en Belgrano" }
+        {
+          "texto": "Vendimos el departamento en menos de dos meses y al precio que esperábamos. Siempre nos tuvieron al tanto de todo.",
+          "nombre": "Andrea y Pablo",
+          "cargo": "Vendieron en Núñez"
+        },
+        {
+          "texto": "Era mi primer alquiler y me explicaron cada paso del contrato. Súper claros y atentos.",
+          "nombre": "Julieta Romero",
+          "cargo": "Alquiló en Palermo"
+        },
+        {
+          "texto": "La tasación fue muy precisa y nos ayudó a decidir. Gran equipo humano.",
+          "nombre": "Ricardo Gómez",
+          "cargo": "Vendió en Belgrano"
+        }
       ]
     },
     {
       "tipo": "llamado",
       "titulo": "¿Querés vender o alquilar tu propiedad?",
       "texto": "Pedí una tasación sin cargo y te decimos cuánto vale en el mercado actual.",
-      "boton": { "texto": "Pedir tasación", "enlace": "/tasaciones" }
+      "boton": {
+        "texto": "Pedir tasación",
+        "enlace": "/tasaciones"
+      }
     },
     {
       "tipo": "contacto",

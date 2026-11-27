@@ -1,0 +1,12 @@
+{
+  "nombre": "Empanadas de carne",
+  "slug": "empanadas-de-carne",
+  "categoria": "Salados",
+  "precio": 14400,
+  "unidad": "la docena",
+  "descripcion": "Cortada a cuchillo, al horno.",
+  "foto": "",
+  "disponible": true,
+  "destacado": false,
+  "orden": 12
+}

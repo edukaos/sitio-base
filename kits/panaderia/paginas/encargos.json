@@ -1,0 +1,104 @@
+{
+  "titulo": "Encargos",
+  "slug": "encargos",
+  "descripcion": "Tortas de cumpleaños, mesas dulces y catering para eventos por encargo.",
+  "secciones": [
+    {
+      "tipo": "hero",
+      "variante": "centrado",
+      "etiqueta": "Con 48 horas de anticipación",
+      "titulo": "Tortas y mesas dulces por encargo",
+      "subtitulo": "Cumpleaños, bautismos, oficinas o una tarde especial. Contanos qué necesitás y lo hacemos a tu medida.",
+      "boton": {
+        "texto": "Consultar por WhatsApp",
+        "enlace": "https://wa.me/5491150001234?text=Hola!%20Quiero%20consultar%20por%20un%20encargo"
+      },
+      "botonSecundario": {
+        "texto": "",
+        "enlace": ""
+      },
+      "imagen": ""
+    },
+    {
+      "tipo": "precios",
+      "titulo": "Opciones más pedidas",
+      "subtitulo": "Precios orientativos. Te pasamos el presupuesto exacto según el diseño.",
+      "planes": [
+        {
+          "nombre": "Torta clásica",
+          "precio": "$ 28.000",
+          "periodo": "desde",
+          "descripcion": "Para 12 a 15 personas",
+          "incluye": [
+            "Bizcochuelo de vainilla o chocolate",
+            "Relleno a elección",
+            "Decoración simple con nombre"
+          ],
+          "destacado": false,
+          "boton": {
+            "texto": "Encargar",
+            "enlace": "/#contacto"
+          }
+        },
+        {
+          "nombre": "Torta de autor",
+          "precio": "$ 45.000",
+          "periodo": "desde",
+          "descripcion": "Para 20 personas",
+          "incluye": [
+            "Diseño personalizado",
+            "Dos rellenos",
+            "Decoración temática",
+            "Cartel y velitas de regalo"
+          ],
+          "destacado": true,
+          "boton": {
+            "texto": "Encargar",
+            "enlace": "/#contacto"
+          }
+        },
+        {
+          "nombre": "Mesa dulce",
+          "precio": "$ 90.000",
+          "periodo": "desde",
+          "descripcion": "Para 30 personas",
+          "incluye": [
+            "Torta principal",
+            "Alfajorcitos, brownies y tartas",
+            "Armado en el lugar (CABA)"
+          ],
+          "destacado": false,
+          "boton": {
+            "texto": "Consultar",
+            "enlace": "/#contacto"
+          }
+        }
+      ],
+      "nota": "Opciones sin TACC y veganas a consultar."
+    },
+    {
+      "tipo": "preguntas",
+      "titulo": "Preguntas frecuentes",
+      "items": [
+        {
+          "pregunta": "¿Con cuánta anticipación tengo que encargar?",
+          "respuesta": "Con 48 horas para tortas y una semana para mesas dulces."
+        },
+        {
+          "pregunta": "¿Hacen envíos?",
+          "respuesta": "Sí, en CABA. El costo depende de la zona."
+        },
+        {
+          "pregunta": "¿Cómo se paga?",
+          "respuesta": "Con una seña del 50% por transferencia o Mercado Pago, y el resto al retirar."
+        }
+      ]
+    },
+    {
+      "tipo": "contacto",
+      "titulo": "Pedí tu presupuesto",
+      "mostrarFormulario": true,
+      "mostrarMapa": false
+    }
+  ]
+}

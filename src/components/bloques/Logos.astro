@@ -1,0 +1,22 @@
+---
+// Bloque: fila de logos de clientes, marcas o medios.
+interface Logo { imagen?: string; nombre?: string; enlace?: string }
+interface Props { ancla?: string; titulo?: string; logos?: Logo[] }
+const { ancla = 'logos', titulo, logos = [] } = Astro.props;
+const lista = logos.filter((l) => l?.imagen || l?.nombre);
+---
+{lista.length > 0 && (
+  <section id={ancla} class="border-y border-borde py-12">
+    <div class="mx-auto max-w-6xl px-5 sm:px-8">
+      {titulo && <p class="mb-8 text-center text-sm font-semibold uppercase tracking-wider text-suave">{titulo}</p>}
+      <div class="flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
+        {lista.map((l) => {
+          const contenido = l.imagen
+            ? <img src={l.imagen} alt={l.nombre ?? ''} loading="lazy" class="h-10 w-auto opacity-60 grayscale transition hover:opacity-100 hover:grayscale-0" />
+            : <span class="font-titulos text-xl font-bold text-suave">{l.nombre}</span>;
+          return l.enlace ? <a href={l.enlace} target="_blank" rel="noopener">{contenido}</a> : contenido;
+        })}
+      </div>
+    </div>
+  </section>
+)}

@@ -1,0 +1,17 @@
+---
+// Bloque: texto libre (historia, políticas, información general).
+interface Props { ancla?: string; etiqueta?: string; titulo?: string; texto?: string; centrado?: boolean }
+const { ancla = 'texto', etiqueta, titulo, texto = '', centrado = false } = Astro.props;
+const parrafos = texto.split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean);
+---
+{(titulo || parrafos.length > 0) && (
+  <section id={ancla} class="py-16 md:py-20">
+    <div class={`mx-auto max-w-3xl px-5 sm:px-8 ${centrado ? 'text-center' : ''}`}>
+      {etiqueta && <p class="mb-3 text-sm font-semibold uppercase tracking-wider text-acento">{etiqueta}</p>}
+      {titulo && <h2 class="text-3xl font-bold text-texto sm:text-4xl">{titulo}</h2>}
+      <div class="mt-6 space-y-4 text-lg leading-relaxed text-suave">
+        {parrafos.map((p) => <p>{p}</p>)}
+      </div>
+    </div>
+  </section>
+)}

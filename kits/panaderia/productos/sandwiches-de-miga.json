@@ -1,0 +1,12 @@
+{
+  "nombre": "Sándwiches de miga",
+  "slug": "sandwiches-de-miga",
+  "categoria": "Salados",
+  "precio": 18000,
+  "unidad": "x 24",
+  "descripcion": "Jamón y queso, triples.",
+  "foto": "",
+  "disponible": true,
+  "destacado": false,
+  "orden": 13
+}

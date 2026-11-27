@@ -11,6 +11,7 @@ on:
         options:
           - profesional
           - inmobiliaria
+          - panaderia
 
 permissions:
   contents: write

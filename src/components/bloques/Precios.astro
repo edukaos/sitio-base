@@ -1,0 +1,36 @@
+---
+// Bloque: planes o paquetes con precio.
+import Encabezado from '../Encabezado.astro';
+import Icono from '../Icono.astro';
+import Boton from '../Boton.astro';
+import type { Enlace } from '../../lib/datos';
+
+interface Plan { nombre?: string; precio?: string; periodo?: string; descripcion?: string; incluye?: string[]; destacado?: boolean; boton?: Enlace }
+interface Props { ancla?: string; etiqueta?: string; titulo?: string; subtitulo?: string; planes?: Plan[]; nota?: string }
+const { ancla = 'precios', etiqueta, titulo, subtitulo, planes = [], nota } = Astro.props;
+const columnas = planes.length >= 4 ? 'lg:grid-cols-4' : planes.length === 2 ? 'lg:grid-cols-2 max-w-4xl mx-auto' : 'lg:grid-cols-3';
+---
+{planes.length > 0 && (
+  <section id={ancla} class="bg-superficie py-20 md:py-28">
+    <div class="mx-auto max-w-6xl px-5 sm:px-8">
+      <Encabezado etiqueta={etiqueta} titulo={titulo} subtitulo={subtitulo} />
+      <div class={`grid items-stretch gap-6 md:grid-cols-2 ${columnas}`}>
+        {planes.map((p) => (
+          <article class={`tarjeta relative flex flex-col p-7 ${p.destacado ? 'ring-2 ring-primario' : ''}`}>
+            {p.destacado && <span class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primario px-3 py-1 text-xs font-semibold text-sobre-primario">Recomendado</span>}
+            <h3 class="text-xl font-bold text-texto">{p.nombre}</h3>
+            {p.descripcion && <p class="mt-2 text-sm text-suave">{p.descripcion}</p>}
+            <p class="mt-5"><span class="font-titulos text-4xl font-bold text-primario">{p.precio}</span>{p.periodo && <span class="ml-1 text-suave">{p.periodo}</span>}</p>
+            <ul class="mt-6 flex-1 space-y-3">
+              {(p.incluye ?? []).filter(Boolean).map((i) => (
+                <li class="flex items-start gap-3 text-sm text-texto"><span class="mt-0.5 text-primario"><Icono nombre="check" class="h-4 w-4" /></span>{i}</li>
+              ))}
+            </ul>
+            <div class="mt-8"><Boton {...p.boton} estilo={p.destacado ? 'primario' : 'secundario'} class="w-full" /></div>
+          </article>
+        ))}
+      </div>
+      {nota && <p class="mt-8 text-center text-sm text-suave">{nota}</p>}
+    </div>
+  </section>
+)}

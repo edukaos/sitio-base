@@ -1,0 +1,42 @@
+---
+// Bloque: galería de fotos con vista ampliada al tocar.
+import Encabezado from '../Encabezado.astro';
+
+interface Foto { imagen?: string; texto?: string }
+interface Props { ancla?: string; etiqueta?: string; titulo?: string; subtitulo?: string; fotos?: Foto[] }
+const { ancla = 'galeria', etiqueta, titulo, subtitulo, fotos = [] } = Astro.props;
+const lista = fotos.filter((f) => f?.imagen);
+---
+{lista.length > 0 && (
+  <section id={ancla} class="py-20 md:py-28">
+    <div class="mx-auto max-w-6xl px-5 sm:px-8">
+      <Encabezado etiqueta={etiqueta} titulo={titulo} subtitulo={subtitulo} />
+      <div class="columns-2 gap-4 md:columns-3 [&>*]:mb-4">
+        {lista.map((f) => (
+          <button type="button" class="galeria-foto group block w-full overflow-hidden rounded-tema" data-src={f.imagen} data-texto={f.texto ?? ''}>
+            <img src={f.imagen} alt={f.texto ?? ''} loading="lazy" class="w-full transition-transform duration-500 group-hover:scale-105" />
+          </button>
+        ))}
+      </div>
+    </div>
+    <dialog class="galeria-visor m-auto max-h-[92vh] max-w-[92vw] rounded-tema bg-transparent p-0 backdrop:bg-black/80">
+      <form method="dialog"><button class="absolute right-3 top-3 rounded-full bg-black/60 px-3 py-1 text-lg text-white" aria-label="Cerrar">✕</button></form>
+      <img class="max-h-[85vh] w-auto rounded-tema" alt="" />
+      <p class="mt-2 text-center text-sm text-white"></p>
+    </dialog>
+  </section>
+)}
+
+<script>
+  document.querySelectorAll<HTMLElement>('.galeria-foto').forEach((b) => {
+    b.addEventListener('click', () => {
+      const visor = b.closest('section')!.querySelector<HTMLDialogElement>('.galeria-visor')!;
+      visor.querySelector('img')!.src = b.dataset.src!;
+      visor.querySelector('p')!.textContent = b.dataset.texto ?? '';
+      visor.showModal();
+    });
+  });
+  document.querySelectorAll<HTMLDialogElement>('.galeria-visor').forEach((d) =>
+    d.addEventListener('click', (e) => { if (e.target === d) d.close(); }),
+  );
+</script>

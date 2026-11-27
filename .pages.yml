@@ -230,6 +230,98 @@ content:
                     - { value: todas, label: "Todas" }
               - { name: cantidad, label: Cantidad máxima, type: number }
 
+          - name: catalogo
+            label: Catálogo de productos
+            fields:
+              - { name: ancla, label: Ancla para el menú, type: string }
+              - { name: etiqueta, label: Texto pequeño superior, type: string }
+              - { name: titulo, label: Título, type: string }
+              - { name: subtitulo, label: Bajada, type: text }
+              - name: mostrar
+                label: Qué mostrar
+                type: select
+                options:
+                  values:
+                    - { value: todos, label: "Todos (con pestañas por categoría)" }
+                    - { value: destacados, label: "Solo destacados" }
+              - { name: pedidos, label: Permitir armar pedido por WhatsApp, type: boolean }
+              - { name: enlaceVerTodo, label: "Enlace a 'Ver todos' (ej. /productos)", type: string }
+
+          - name: galeria
+            label: Galería de fotos
+            fields:
+              - { name: ancla, label: Ancla para el menú, type: string }
+              - { name: etiqueta, label: Texto pequeño superior, type: string }
+              - { name: titulo, label: Título, type: string }
+              - { name: subtitulo, label: Bajada, type: text }
+              - name: fotos
+                label: Fotos
+                type: object
+                list: true
+                fields:
+                  - { name: imagen, label: Foto, type: image }
+                  - { name: texto, label: Descripción (opcional), type: string }
+
+          - name: precios
+            label: Precios / planes
+            fields:
+              - { name: ancla, label: Ancla para el menú, type: string }
+              - { name: etiqueta, label: Texto pequeño superior, type: string }
+              - { name: titulo, label: Título, type: string }
+              - { name: subtitulo, label: Bajada, type: text }
+              - name: planes
+                label: Planes
+                type: object
+                list: true
+                fields:
+                  - { name: nombre, label: Nombre, type: string }
+                  - { name: precio, label: "Precio (ej. $ 25.000)", type: string }
+                  - { name: periodo, label: "Detalle del precio (ej. por mes, desde)", type: string }
+                  - { name: descripcion, label: Descripción corta, type: string }
+                  - { name: incluye, label: Qué incluye, type: string, list: true }
+                  - { name: destacado, label: Destacar como recomendado, type: boolean }
+                  - { name: boton, label: Botón, component: boton }
+              - { name: nota, label: Nota al pie, type: string }
+
+          - name: equipo
+            label: Equipo
+            fields:
+              - { name: ancla, label: Ancla para el menú, type: string }
+              - { name: etiqueta, label: Texto pequeño superior, type: string }
+              - { name: titulo, label: Título, type: string }
+              - { name: subtitulo, label: Bajada, type: text }
+              - name: personas
+                label: Personas
+                type: object
+                list: true
+                fields:
+                  - { name: foto, label: Foto, type: image }
+                  - { name: nombre, label: Nombre, type: string }
+                  - { name: cargo, label: Cargo, type: string }
+                  - { name: texto, label: Texto corto, type: text }
+
+          - name: logos
+            label: Logos de clientes / marcas
+            fields:
+              - { name: titulo, label: "Título (ej. Confían en nosotros)", type: string }
+              - name: logos
+                label: Logos
+                type: object
+                list: true
+                fields:
+                  - { name: imagen, label: Logo, type: image }
+                  - { name: nombre, label: "Nombre (se muestra si no hay logo)", type: string }
+                  - { name: enlace, label: Enlace (opcional), type: string }
+
+          - name: texto
+            label: Texto libre
+            fields:
+              - { name: ancla, label: Ancla para el menú, type: string }
+              - { name: etiqueta, label: Texto pequeño superior, type: string }
+              - { name: titulo, label: Título, type: string }
+              - { name: texto, label: "Texto (dejá una línea en blanco entre párrafos)", type: text }
+              - { name: centrado, label: Centrado, type: boolean }
+
           - name: contacto
             label: Contacto
             fields:
@@ -301,3 +393,23 @@ content:
       - { name: descripcion, label: "Descripción (dejá una línea en blanco entre párrafos)", type: text }
       - { name: caracteristicas, label: Características, type: string, list: true }
       - { name: fotos, label: "Fotos (la primera es la portada)", type: image, list: true }
+
+  - name: productos
+    label: Productos
+    type: collection
+    path: src/content/productos
+    format: json
+    filename: "{fields.slug}.json"
+    view:
+      primary: nombre
+    fields:
+      - { name: nombre, label: Nombre, type: string, required: true }
+      - { name: slug, label: "Código (sin espacios, ej. medialunas-de-manteca)", type: string, required: true }
+      - { name: categoria, label: "Categoría (ej. Panes, Facturas, Tortas)", type: string, required: true }
+      - { name: precio, label: "Precio (solo números, vacío = Consultar)", type: number }
+      - { name: unidad, label: "Unidad (ej. la docena, el kg, c/u)", type: string }
+      - { name: descripcion, label: Descripción corta, type: text }
+      - { name: foto, label: Foto, type: image }
+      - { name: disponible, label: Disponible (si no, se muestra Agotado), type: boolean }
+      - { name: destacado, label: Destacado en la portada, type: boolean }
+      - { name: orden, label: "Orden (1 = primero)", type: number }

@@ -1,0 +1,12 @@
+{
+  "nombre": "Vigilantes con membrillo",
+  "slug": "vigilantes-con-membrillo",
+  "categoria": "Facturas",
+  "precio": 10200,
+  "unidad": "la docena",
+  "descripcion": "Hojaldre casero y dulce de membrillo.",
+  "foto": "",
+  "disponible": true,
+  "destacado": false,
+  "orden": 6
+}

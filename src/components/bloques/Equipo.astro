@@ -1,0 +1,30 @@
+---
+// Bloque: equipo de trabajo con foto, nombre y cargo.
+import Encabezado from '../Encabezado.astro';
+
+interface Persona { foto?: string; nombre?: string; cargo?: string; texto?: string }
+interface Props { ancla?: string; etiqueta?: string; titulo?: string; subtitulo?: string; personas?: Persona[] }
+const { ancla = 'equipo', etiqueta, titulo, subtitulo, personas = [] } = Astro.props;
+const iniciales = (n = '') => n.split(' ').filter(Boolean).slice(0, 2).map((p) => p[0]).join('').toUpperCase();
+---
+{personas.length > 0 && (
+  <section id={ancla} class="py-20 md:py-28">
+    <div class="mx-auto max-w-6xl px-5 sm:px-8">
+      <Encabezado etiqueta={etiqueta} titulo={titulo} subtitulo={subtitulo} />
+      <div class={`grid gap-8 sm:grid-cols-2 ${personas.length >= 4 ? 'lg:grid-cols-4' : 'lg:grid-cols-3'}`}>
+        {personas.map((p) => (
+          <article class="text-center">
+            {p.foto ? (
+              <img src={p.foto} alt={p.nombre} loading="lazy" class="mx-auto aspect-square w-full max-w-60 rounded-tema object-cover" />
+            ) : (
+              <div class="mx-auto flex aspect-square w-full max-w-60 items-center justify-center rounded-tema bg-linear-to-br from-primario/15 to-acento/25 font-titulos text-5xl font-bold text-primario">{iniciales(p.nombre)}</div>
+            )}
+            <h3 class="mt-5 text-lg font-bold text-texto">{p.nombre}</h3>
+            {p.cargo && <p class="text-sm font-semibold text-acento">{p.cargo}</p>}
+            {p.texto && <p class="mx-auto mt-2 max-w-xs text-sm text-suave">{p.texto}</p>}
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+)}

@@ -1,0 +1,41 @@
+{
+  "nombre": "Panadería La Espiga",
+  "eslogan": "Pan de masa madre, facturas y tortas caseras en Villa Crespo desde 1985",
+  "logo": "",
+  "tema": "sabor",
+  "colorPrincipal": "",
+  "menu": [
+    {
+      "texto": "Productos",
+      "enlace": "/productos"
+    },
+    {
+      "texto": "Encargos",
+      "enlace": "/encargos"
+    },
+    {
+      "texto": "Nosotros",
+      "enlace": "/#nosotros"
+    },
+    {
+      "texto": "Contacto",
+      "enlace": "/#contacto"
+    }
+  ],
+  "contacto": {
+    "telefono": "+54 11 4855-1234",
+    "email": "hola@panaderialaespiga.com.ar",
+    "direccion": "Av. Corrientes 5200, Villa Crespo, CABA",
+    "horarios": "Lunes a sábado de 7 a 20 h · Domingos de 8 a 13 h",
+    "whatsapp": "+54 9 11 5000-1234",
+    "mensajeWhatsapp": "¡Hola! Quiero hacer una consulta."
+  },
+  "redes": {
+    "instagram": "https://instagram.com/",
+    "facebook": "https://facebook.com/",
+    "linkedin": "",
+    "tiktok": ""
+  },
+  "formularioClave": "",
+  "seoImagen": ""
+}

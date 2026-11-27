@@ -1,0 +1,12 @@
+{
+  "nombre": "Medialunas de manteca",
+  "slug": "medialunas-de-manteca",
+  "categoria": "Facturas",
+  "precio": 9600,
+  "unidad": "la docena",
+  "descripcion": "La receta original de 1985.",
+  "foto": "",
+  "disponible": true,
+  "destacado": true,
+  "orden": 4
+}

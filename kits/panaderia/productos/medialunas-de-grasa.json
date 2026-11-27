@@ -1,0 +1,12 @@
+{
+  "nombre": "Medialunas de grasa",
+  "slug": "medialunas-de-grasa",
+  "categoria": "Facturas",
+  "precio": 8400,
+  "unidad": "la docena",
+  "descripcion": "Saladitas, ideales para el mate.",
+  "foto": "",
+  "disponible": true,
+  "destacado": false,
+  "orden": 5
+}

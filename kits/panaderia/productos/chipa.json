@@ -1,0 +1,12 @@
+{
+  "nombre": "Chipá",
+  "slug": "chipa",
+  "categoria": "Salados",
+  "precio": 7500,
+  "unidad": "el ½ kg",
+  "descripcion": "Con queso de verdad, recién horneado.",
+  "foto": "",
+  "disponible": true,
+  "destacado": true,
+  "orden": 11
+}

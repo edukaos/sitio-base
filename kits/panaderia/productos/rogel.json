@@ -1,0 +1,12 @@
+{
+  "nombre": "Rogel",
+  "slug": "rogel",
+  "categoria": "Tortas",
+  "precio": 26000,
+  "unidad": "entero",
+  "descripcion": "Capas finitas y mucho dulce de leche.",
+  "foto": "",
+  "disponible": false,
+  "destacado": false,
+  "orden": 10
+}

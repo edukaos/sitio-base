@@ -12,6 +12,12 @@ import Llamado from './bloques/Llamado.astro';
 import Contacto from './bloques/Contacto.astro';
 import Propiedades from './bloques/Propiedades.astro';
 import Buscador from './bloques/Buscador.astro';
+import Catalogo from './bloques/Catalogo.astro';
+import Galeria from './bloques/Galeria.astro';
+import Precios from './bloques/Precios.astro';
+import Equipo from './bloques/Equipo.astro';
+import Logos from './bloques/Logos.astro';
+import Texto from './bloques/Texto.astro';
 
 interface Props { secciones: Seccion[] }
 const { secciones } = Astro.props;
@@ -27,6 +33,12 @@ const mapa: Record<string, any> = {
   contacto: Contacto,
   propiedades: Propiedades,
   buscador: Buscador,
+  catalogo: Catalogo,
+  galeria: Galeria,
+  precios: Precios,
+  equipo: Equipo,
+  logos: Logos,
+  texto: Texto,
 };
 ---
 {secciones.map((seccion, i) => {

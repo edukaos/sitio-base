@@ -1,0 +1,12 @@
+{
+  "nombre": "Lemon pie",
+  "slug": "lemon-pie",
+  "categoria": "Tortas",
+  "precio": 19500,
+  "unidad": "entera",
+  "descripcion": "Merengue italiano y crema de limón.",
+  "foto": "",
+  "disponible": true,
+  "destacado": false,
+  "orden": 9
+}

@@ -1,0 +1,12 @@
+{
+  "nombre": "Bolas de fraile",
+  "slug": "bolas-de-fraile",
+  "categoria": "Facturas",
+  "precio": 11000,
+  "unidad": "la docena",
+  "descripcion": "Rellenas de dulce de leche.",
+  "foto": "",
+  "disponible": true,
+  "destacado": true,
+  "orden": 7
+}

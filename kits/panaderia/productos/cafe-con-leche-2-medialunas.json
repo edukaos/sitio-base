@@ -1,0 +1,12 @@
+{
+  "nombre": "Café con leche + 2 medialunas",
+  "slug": "cafe-con-leche-2-medialunas",
+  "categoria": "Café",
+  "precio": 5200,
+  "unidad": "",
+  "descripcion": "El clásico desayuno de la casa.",
+  "foto": "",
+  "disponible": true,
+  "destacado": false,
+  "orden": 14
+}

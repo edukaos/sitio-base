@@ -1,0 +1,101 @@
+{
+  "titulo": "Inicio",
+  "slug": "inicio",
+  "descripcion": "Panadería artesanal en Villa Crespo. Pan de masa madre, facturas, tortas y pedidos por WhatsApp.",
+  "secciones": [
+    {
+      "tipo": "hero",
+      "variante": "dividido",
+      "etiqueta": "Horneado todos los días desde las 6 de la mañana",
+      "titulo": "El pan de siempre, hecho como antes",
+      "subtitulo": "Masa madre, manteca de verdad y mucho tiempo. Pedí por WhatsApp y retiralo calentito.",
+      "puntos": [
+        "Masa madre de fermentación lenta",
+        "Envíos en Villa Crespo y alrededores",
+        "Tortas por encargo"
+      ],
+      "boton": {
+        "texto": "Ver productos",
+        "enlace": "/productos"
+      },
+      "botonSecundario": {
+        "texto": "Encargar una torta",
+        "enlace": "/encargos"
+      },
+      "imagen": ""
+    },
+    {
+      "tipo": "catalogo",
+      "etiqueta": "Los favoritos",
+      "titulo": "Lo que más sale",
+      "subtitulo": "Agregá lo que quieras y mandanos el pedido por WhatsApp.",
+      "mostrar": "destacados",
+      "pedidos": true,
+      "enlaceVerTodo": "/productos"
+    },
+    {
+      "tipo": "servicios",
+      "titulo": "¿Por qué La Espiga?",
+      "items": [
+        {
+          "icono": "hoja",
+          "titulo": "Ingredientes nobles",
+          "texto": "Harinas seleccionadas, manteca, huevos de campo. Sin premezclas ni conservantes."
+        },
+        {
+          "icono": "reloj",
+          "titulo": "Fermentación lenta",
+          "texto": "Nuestro pan de masa madre fermenta 24 horas: más sabor y más fácil de digerir."
+        },
+        {
+          "icono": "camion",
+          "titulo": "Envíos en el barrio",
+          "texto": "Llevamos tu pedido en Villa Crespo, Almagro y Palermo. Gratis desde $ 15.000."
+        }
+      ]
+    },
+    {
+      "tipo": "nosotros",
+      "etiqueta": "Nuestra historia",
+      "titulo": "Tres generaciones amasando",
+      "texto": "Don Aurelio abrió La Espiga en 1985 con un horno a leña y una receta de medialunas que trajo de Mar del Plata.\n\nHoy sus nietas siguen al frente, con el mismo cariño y algunas recetas nuevas, como el pan de masa madre y las tortas de autor.",
+      "imagen": "",
+      "imagenIzquierda": true,
+      "puntos": [
+        "Horno propio",
+        "Recetas familiares",
+        "Atención personalizada",
+        "Opciones sin TACC por encargo"
+      ]
+    },
+    {
+      "tipo": "testimonios",
+      "titulo": "Lo que dicen los vecinos",
+      "items": [
+        {
+          "texto": "Las mejores medialunas del barrio, sin discusión. Y el pan de masa madre dura toda la semana.",
+          "nombre": "Mariana López",
+          "cargo": "Vecina de Villa Crespo"
+        },
+        {
+          "texto": "Encargué la torta para el cumple de mi hija y fue un éxito. Hermosa y riquísima.",
+          "nombre": "Diego Fernández",
+          "cargo": "Cliente"
+        },
+        {
+          "texto": "Pido todos los sábados por WhatsApp y me lo traen a casa. Un lujo.",
+          "nombre": "Silvia Ramos",
+          "cargo": "Cliente de Almagro"
+        }
+      ]
+    },
+    {
+      "tipo": "contacto",
+      "etiqueta": "Visitanos",
+      "titulo": "Te esperamos",
+      "subtitulo": "Estamos sobre Av. Corrientes, a dos cuadras del subte B.",
+      "mostrarFormulario": false,
+      "mostrarMapa": true
+    }
+  ]
+}

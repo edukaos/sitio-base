@@ -1,0 +1,12 @@
+{
+  "nombre": "Baguette",
+  "slug": "baguette",
+  "categoria": "Panes",
+  "precio": 1800,
+  "unidad": "la unidad",
+  "descripcion": "Corteza crocante, miga aireada.",
+  "foto": "",
+  "disponible": true,
+  "destacado": false,
+  "orden": 2
+}

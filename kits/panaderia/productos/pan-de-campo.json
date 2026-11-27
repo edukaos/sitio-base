@@ -1,0 +1,12 @@
+{
+  "nombre": "Pan de campo",
+  "slug": "pan-de-campo",
+  "categoria": "Panes",
+  "precio": 3200,
+  "unidad": "la unidad",
+  "descripcion": "Con harina integral y semillas.",
+  "foto": "",
+  "disponible": true,
+  "destacado": false,
+  "orden": 3
+}

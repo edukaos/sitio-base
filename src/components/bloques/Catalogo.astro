@@ -1,0 +1,164 @@
+---
+// Bloque: catálogo de productos por categoría, con pedido por WhatsApp opcional.
+import Encabezado from '../Encabezado.astro';
+import Icono from '../Icono.astro';
+import Boton from '../Boton.astro';
+import { productos, categorias, formatoPesos } from '../../lib/productos';
+import { sitio } from '../../lib/datos';
+
+interface Props {
+  ancla?: string;
+  etiqueta?: string;
+  titulo?: string;
+  subtitulo?: string;
+  mostrar?: 'todos' | 'destacados';
+  pedidos?: boolean;
+  enlaceVerTodo?: string;
+}
+const { ancla = 'productos', etiqueta, titulo, subtitulo, mostrar = 'todos', pedidos = true, enlaceVerTodo } = Astro.props;
+
+let lista = mostrar === 'destacados' ? productos.filter((p) => p.destacado) : productos;
+if (lista.length === 0) lista = productos;
+const cats = categorias(lista);
+const conPestanas = mostrar === 'todos' && cats.length > 1;
+const numeroWa = (sitio.contacto?.whatsapp ?? '').replace(/\D/g, '');
+const usarPedidos = pedidos && !!numeroWa;
+---
+{lista.length > 0 && (
+  <section id={ancla} class="py-20 md:py-28" data-catalogo>
+    <div class="mx-auto max-w-6xl px-5 sm:px-8">
+      <Encabezado etiqueta={etiqueta} titulo={titulo} subtitulo={subtitulo} />
+
+      {conPestanas && (
+        <div class="mb-10 flex flex-wrap justify-center gap-2" role="tablist">
+          <button type="button" data-cat="" class="pestana rounded-full border border-borde px-5 py-2 text-sm font-semibold transition-colors" aria-pressed="true">Todo</button>
+          {cats.map((c) => (
+            <button type="button" data-cat={c} class="pestana rounded-full border border-borde px-5 py-2 text-sm font-semibold transition-colors" aria-pressed="false">{c}</button>
+          ))}
+        </div>
+      )}
+
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {lista.map((p) => (
+          <article class="tarjeta flex flex-col overflow-hidden" data-producto data-categoria={p.categoria}>
+            <div class="relative aspect-[4/3] overflow-hidden bg-superficie">
+              {p.foto ? (
+                <img src={p.foto} alt={p.nombre} loading="lazy" class="h-full w-full object-cover" />
+              ) : (
+                <div class="flex h-full w-full items-center justify-center bg-linear-to-br from-acento/25 to-primario/15 text-primario/50">
+                  <Icono nombre="estrella" class="h-14 w-14" />
+                </div>
+              )}
+              {!p.disponible && <span class="absolute left-3 top-3 rounded-tema bg-texto px-2.5 py-1 text-xs font-semibold text-white">Agotado</span>}
+              {p.disponible && p.destacado && mostrar === 'todos' && <span class="absolute left-3 top-3 rounded-tema bg-acento px-2.5 py-1 text-xs font-semibold text-white">Favorito</span>}
+            </div>
+            <div class="flex flex-1 flex-col p-5">
+              <p class="text-xs font-semibold uppercase tracking-wider text-acento">{p.categoria}</p>
+              <h3 class="mt-1 text-lg font-bold text-texto">{p.nombre}</h3>
+              {p.descripcion && <p class="mt-2 text-sm text-suave">{p.descripcion}</p>}
+              <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+                <p class="font-titulos text-2xl font-bold text-primario">
+                  {p.precio ? formatoPesos(p.precio) : 'Consultar'}
+                  {p.precio && p.unidad && <span class="ml-1 font-cuerpo text-sm font-normal text-suave">{p.unidad}</span>}
+                </p>
+                {usarPedidos && p.disponible && (
+                  <div class="shrink-0" data-control data-nombre={p.nombre} data-precio={p.precio ?? 0} data-unidad={p.unidad ?? ''}>
+                    <button type="button" data-agregar class="rounded-tema bg-primario px-4 py-2 text-sm font-semibold text-sobre-primario transition-colors hover:bg-primario-oscuro">Agregar</button>
+                    <div data-cantidad class="hidden items-center gap-2">
+                      <button type="button" data-menos class="h-9 w-9 rounded-tema border border-borde text-lg font-bold text-texto" aria-label="Quitar uno">−</button>
+                      <span data-numero class="w-6 text-center font-semibold text-texto">0</span>
+                      <button type="button" data-mas class="h-9 w-9 rounded-tema bg-primario text-lg font-bold text-sobre-primario" aria-label="Agregar uno">+</button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      {enlaceVerTodo && (
+        <div class="mt-12 text-center"><Boton texto="Ver todos los productos" enlace={enlaceVerTodo} estilo="secundario" /></div>
+      )}
+    </div>
+
+    {usarPedidos && (
+      <div data-barra-pedido data-wa={numeroWa} class="fixed inset-x-3 bottom-3 z-40 mx-auto hidden max-w-xl pr-16 sm:pr-0">
+        <div class="tarjeta flex items-center justify-between gap-3 p-3 pl-5 shadow-2xl">
+          <p class="text-sm text-texto"><strong data-total-items>0</strong> productos · <strong data-total-precio>$ 0</strong></p>
+          <a data-enviar href="#" target="_blank" rel="noopener" class="flex items-center gap-2 rounded-tema bg-[#25D366] px-4 py-2.5 text-sm font-semibold text-white">
+            <Icono nombre="chat" class="h-4 w-4" /> Pedir por WhatsApp
+          </a>
+        </div>
+      </div>
+    )}
+  </section>
+)}
+
+<script>
+  // Pestañas de categorías
+  document.querySelectorAll<HTMLElement>('[data-catalogo]').forEach((cat) => {
+    const pestanas = cat.querySelectorAll<HTMLButtonElement>('.pestana');
+    const items = cat.querySelectorAll<HTMLElement>('[data-producto]');
+    const marcar = (activa: HTMLButtonElement) => {
+      pestanas.forEach((p) => {
+        const on = p === activa;
+        p.setAttribute('aria-pressed', String(on));
+        p.classList.toggle('bg-primario', on);
+        p.classList.toggle('text-sobre-primario', on);
+        p.classList.toggle('border-primario', on);
+        p.classList.toggle('text-texto', !on);
+      });
+      const valor = activa.dataset.cat;
+      items.forEach((i) => (i.style.display = !valor || i.dataset.categoria === valor ? '' : 'none'));
+    };
+    pestanas.forEach((p) => p.addEventListener('click', () => marcar(p)));
+    if (pestanas[0]) marcar(pestanas[0]);
+  });
+
+  // Pedido por WhatsApp (un solo pedido para toda la página)
+  const pedido = new Map<string, { cantidad: number; precio: number; unidad: string }>();
+  const barras = Array.from(document.querySelectorAll<HTMLElement>('[data-barra-pedido]'));
+  const barra = barras[0];
+  const formato = (n: number) => '$ ' + new Intl.NumberFormat('es-AR', { maximumFractionDigits: 0 }).format(n);
+
+  function actualizar() {
+    // Sincroniza todos los controles del mismo producto
+    document.querySelectorAll<HTMLElement>('[data-control]').forEach((c) => {
+      const cant = pedido.get(c.dataset.nombre!)?.cantidad ?? 0;
+      c.querySelector('[data-agregar]')!.classList.toggle('hidden', cant > 0);
+      const caja = c.querySelector('[data-cantidad]')!;
+      caja.classList.toggle('hidden', cant === 0);
+      caja.classList.toggle('flex', cant > 0);
+      c.querySelector('[data-numero]')!.textContent = String(cant);
+    });
+    if (!barra) return;
+    let items = 0;
+    let total = 0;
+    const lineas: string[] = [];
+    pedido.forEach((v, nombre) => {
+      items += v.cantidad;
+      total += v.cantidad * v.precio;
+      lineas.push(`• ${v.cantidad} x ${nombre}${v.precio ? ` (${formato(v.precio)}${v.unidad ? ' ' + v.unidad : ''})` : ''}`);
+    });
+    barra.classList.toggle('hidden', items === 0);
+    barra.querySelector('[data-total-items]')!.textContent = String(items);
+    barra.querySelector('[data-total-precio]')!.textContent = formato(total);
+    const mensaje = `¡Hola! Quiero hacer este pedido:\n${lineas.join('\n')}\n\nTotal estimado: ${formato(total)}\n\nNombre:\n¿Retiro o envío?:`;
+    (barra.querySelector('[data-enviar]') as HTMLAnchorElement).href = `https://wa.me/${barra.dataset.wa}?text=${encodeURIComponent(mensaje)}`;
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-control]').forEach((c) => {
+    const nombre = c.dataset.nombre!;
+    const cambiar = (delta: number) => {
+      const actual = pedido.get(nombre) ?? { cantidad: 0, precio: Number(c.dataset.precio) || 0, unidad: c.dataset.unidad ?? '' };
+      actual.cantidad = Math.max(0, actual.cantidad + delta);
+      if (actual.cantidad === 0) pedido.delete(nombre);
+      else pedido.set(nombre, actual);
+      actualizar();
+    };
+    c.querySelector('[data-agregar]')!.addEventListener('click', () => cambiar(1));
+    c.querySelector('[data-mas]')!.addEventListener('click', () => cambiar(1));
+    c.querySelector('[data-menos]')!.addEventListener('click', () => cambiar(-1));
+  });
+</script>

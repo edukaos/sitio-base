@@ -1,0 +1,14 @@
+{
+  "titulo": "Productos",
+  "slug": "productos",
+  "descripcion": "Pan de masa madre, facturas, tortas y salados. Hacé tu pedido por WhatsApp.",
+  "secciones": [
+    {
+      "tipo": "catalogo",
+      "titulo": "Nuestros productos",
+      "subtitulo": "Elegí, agregá al pedido y envialo por WhatsApp. Te confirmamos el horario de retiro o envío.",
+      "mostrar": "todos",
+      "pedidos": true
+    }
+  ]
+}

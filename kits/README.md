@@ -13,3 +13,5 @@ En GitHub: pestaña **Actions** → **Aplicar kit** → **Run workflow** → ele
 En 1–2 minutos el sitio se publica con el contenido del kit. Después se personaliza desde Pages CMS.
 
 > Atención: aplicar un kit reemplaza las páginas y el contenido actuales del sitio.
+
+| `panaderia` | panaderías, cafés, rotiserías | catálogo por categorías con pedido por WhatsApp, página de encargos con precios, tema Sabor |
