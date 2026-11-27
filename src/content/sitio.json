@@ -1,29 +1,35 @@
 {
   "nombre": "Estudio Ferrari & Asociados",
-  "eslogan": "Asesoramiento contable y legal para pymes y profesionales",
-  "logo": "",
+  "eslogan": "Asesoramiento contable y legal para pymes ",
   "tema": "profesional",
-  "colorPrincipal": "",
   "menu": [
-    { "texto": "Servicios", "enlace": "/#servicios" },
-    { "texto": "Nosotros", "enlace": "/#nosotros" },
-    { "texto": "Preguntas", "enlace": "/#preguntas" },
-    { "texto": "Contacto", "enlace": "/#contacto" }
+    {
+      "texto": "Servicios",
+      "enlace": "/#servicios"
+    },
+    {
+      "texto": "Nosotros",
+      "enlace": "/#nosotros"
+    },
+    {
+      "texto": "Preguntas",
+      "enlace": "/#preguntas"
+    },
+    {
+      "texto": "Contacto",
+      "enlace": "/#contacto"
+    }
   ],
   "contacto": {
     "telefono": "+54 11 4321-5678",
+    "whatsapp": "+54 9 11 5555-1234",
+    "mensajeWhatsapp": "Hola, quiero hacer una consulta.",
     "email": "consultas@estudioferrari.com.ar",
     "direccion": "Av. Corrientes 1234, piso 5, CABA",
-    "horarios": "Lunes a viernes de 9 a 18 h",
-    "whatsapp": "+54 9 11 5555-1234",
-    "mensajeWhatsapp": "Hola, quiero hacer una consulta."
+    "horarios": "Lunes a viernes de 9 a 18 h"
   },
   "redes": {
     "instagram": "https://instagram.com/",
-    "facebook": "",
-    "linkedin": "https://linkedin.com/",
-    "tiktok": ""
-  },
-  "formularioClave": "",
-  "seoImagen": ""
+    "linkedin": "https://linkedin.com/"
+  }
 }
