@@ -34,6 +34,12 @@ jobs:
           }
           capturar inmobiliaria / /propiedades /propiedades/pal-3amb-balcon /tasaciones
           capturar profesional /
+          for TEMA in profesional sabor startup bienestar barrio; do
+            sed -i -E "s/\"tema\": *\"[a-z]+\"/\"tema\": \"$TEMA\"/" kits/profesional/sitio.json
+            capturar profesional /
+            mv /tmp/capturas/profesional/compu_.png "/tmp/capturas/tema-$TEMA.png"
+          done
+          git checkout kits/profesional/sitio.json
       - name: Publicar en la rama capturas
         run: |
           cd /tmp/capturas
