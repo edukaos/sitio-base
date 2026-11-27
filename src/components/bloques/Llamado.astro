@@ -1,0 +1,18 @@
+---
+import Boton from '../Boton.astro';
+import type { Enlace } from '../../lib/datos';
+
+interface Props { ancla?: string; titulo?: string; texto?: string; boton?: Enlace }
+const { ancla = 'llamado', titulo, texto, boton } = Astro.props;
+---
+<section id={ancla} class="px-5 py-16 sm:px-8">
+  <div class="relative mx-auto max-w-5xl overflow-hidden rounded-tema bg-linear-to-br from-primario to-primario-oscuro px-8 py-14 text-center text-sobre-primario md:px-16">
+    <div class="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-white/10" />
+    <div class="pointer-events-none absolute -bottom-24 -left-16 h-56 w-56 rounded-full bg-acento/30" />
+    <div class="relative">
+      {titulo && <h2 class="text-3xl font-bold md:text-4xl">{titulo}</h2>}
+      {texto && <p class="mx-auto mt-4 max-w-2xl text-lg opacity-90">{texto}</p>}
+      <div class="mt-8"><Boton {...boton} estilo="claro" /></div>
+    </div>
+  </div>
+</section>

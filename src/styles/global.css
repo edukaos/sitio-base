@@ -1,0 +1,58 @@
+@import "tailwindcss";
+@import "../temas/temas.css";
+
+/* Las clases de Tailwind usan las variables del tema activo.
+   Ej.: bg-primario, text-suave, font-titulos, rounded-tema */
+@theme inline {
+  --color-primario: var(--primario);
+  --color-primario-oscuro: var(--primario-oscuro);
+  --color-acento: var(--acento);
+  --color-fondo: var(--fondo);
+  --color-superficie: var(--superficie);
+  --color-texto: var(--texto);
+  --color-suave: var(--texto-suave);
+  --color-borde: var(--borde);
+  --color-sobre-primario: var(--sobre-primario);
+  --font-titulos: var(--fuente-titulos);
+  --font-cuerpo: var(--fuente-cuerpo);
+  --radius-tema: var(--radio);
+}
+
+:root {
+  --primario-oscuro: color-mix(in oklab, var(--primario) 78%, black);
+  --sobre-primario: #ffffff;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: var(--fuente-cuerpo);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--fuente-titulos);
+  letter-spacing: var(--titulos-espaciado, -0.01em);
+  line-height: 1.15;
+}
+
+/* Tarjeta: el estilo cambia según el tema (sombra o borde marcado) */
+.tarjeta {
+  background: var(--fondo);
+  border: var(--tarjeta-borde, 1px solid var(--borde));
+  border-radius: var(--radio);
+  box-shadow: var(--tarjeta-sombra, 0 1px 2px rgb(0 0 0 / 0.04), 0 8px 24px -12px rgb(0 0 0 / 0.12));
+}
+
+.contenido-rico p { margin-bottom: 1em; }
+.contenido-rico a { color: var(--primario); text-decoration: underline; }
+.contenido-rico ul { list-style: disc; padding-left: 1.25em; margin-bottom: 1em; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}

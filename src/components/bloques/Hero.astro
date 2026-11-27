@@ -1,0 +1,81 @@
+---
+import Boton from '../Boton.astro';
+import Icono from '../Icono.astro';
+import type { Enlace } from '../../lib/datos';
+
+interface Props {
+  ancla?: string;
+  variante?: 'dividido' | 'centrado' | 'fondo';
+  etiqueta?: string;
+  titulo?: string;
+  subtitulo?: string;
+  boton?: Enlace;
+  botonSecundario?: Enlace;
+  imagen?: string;
+  puntos?: string[];
+}
+const { ancla = 'inicio', variante = 'dividido', etiqueta, titulo, subtitulo, boton, botonSecundario, imagen, puntos = [] } = Astro.props;
+const lista = puntos.filter(Boolean);
+---
+{variante === 'fondo' ? (
+  <section id={ancla} class="relative isolate overflow-hidden bg-primario-oscuro">
+    {imagen && <img src={imagen} alt="" class="absolute inset-0 -z-10 h-full w-full object-cover" />}
+    <div class="absolute inset-0 -z-10 bg-linear-to-r from-black/75 via-black/50 to-black/20" />
+    <div class="mx-auto max-w-6xl px-5 py-28 sm:px-8 md:py-40">
+      <div class="max-w-2xl text-white">
+        {etiqueta && <p class="mb-4 text-sm font-semibold uppercase tracking-wider text-acento">{etiqueta}</p>}
+        {titulo && <h1 class="text-4xl font-bold sm:text-5xl md:text-6xl">{titulo}</h1>}
+        {subtitulo && <p class="mt-6 text-lg text-white/85 md:text-xl">{subtitulo}</p>}
+        <div class="mt-10 flex flex-wrap gap-4">
+          <Boton {...boton} estilo="primario" />
+          <Boton {...botonSecundario} estilo="contorno-claro" />
+        </div>
+      </div>
+    </div>
+  </section>
+) : variante === 'centrado' ? (
+  <section id={ancla} class="relative overflow-hidden bg-superficie">
+    <div class="pointer-events-none absolute -top-40 left-1/2 h-[32rem] w-[32rem] -translate-x-1/2 rounded-full bg-primario/10 blur-3xl" />
+    <div class="relative mx-auto max-w-4xl px-5 py-24 text-center sm:px-8 md:py-32">
+      {etiqueta && <p class="mb-5 inline-block rounded-full border border-borde bg-fondo px-4 py-1.5 text-sm font-medium text-primario">{etiqueta}</p>}
+      {titulo && <h1 class="text-4xl font-bold text-texto sm:text-5xl md:text-6xl">{titulo}</h1>}
+      {subtitulo && <p class="mx-auto mt-6 max-w-2xl text-lg text-suave md:text-xl">{subtitulo}</p>}
+      <div class="mt-10 flex flex-wrap justify-center gap-4">
+        <Boton {...boton} estilo="primario" />
+        <Boton {...botonSecundario} estilo="secundario" />
+      </div>
+      {imagen && <img src={imagen} alt="" class="tarjeta mx-auto mt-16 w-full max-w-4xl object-cover" />}
+    </div>
+  </section>
+) : (
+  <section id={ancla} class="bg-superficie">
+    <div class="mx-auto grid max-w-6xl items-center gap-12 px-5 py-20 sm:px-8 md:grid-cols-2 md:py-28">
+      <div>
+        {etiqueta && <p class="mb-4 text-sm font-semibold uppercase tracking-wider text-acento">{etiqueta}</p>}
+        {titulo && <h1 class="text-4xl font-bold text-texto sm:text-5xl">{titulo}</h1>}
+        {subtitulo && <p class="mt-6 text-lg text-suave">{subtitulo}</p>}
+        {lista.length > 0 && (
+          <ul class="mt-6 space-y-2">
+            {lista.map((p) => (
+              <li class="flex items-center gap-3 text-texto"><span class="text-primario"><Icono nombre="check" class="h-5 w-5" /></span>{p}</li>
+            ))}
+          </ul>
+        )}
+        <div class="mt-10 flex flex-wrap gap-4">
+          <Boton {...boton} estilo="primario" />
+          <Boton {...botonSecundario} estilo="secundario" />
+        </div>
+      </div>
+      <div class="relative">
+        <div class="absolute -inset-4 -z-0 rotate-2 rounded-tema bg-acento/20" />
+        {imagen ? (
+          <img src={imagen} alt="" class="relative aspect-[4/3] w-full rounded-tema object-cover shadow-xl" />
+        ) : (
+          <div class="relative flex aspect-[4/3] w-full items-center justify-center rounded-tema bg-linear-to-br from-primario to-primario-oscuro text-white/90 shadow-xl">
+            <Icono nombre="estrella" class="h-20 w-20" />
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+)}

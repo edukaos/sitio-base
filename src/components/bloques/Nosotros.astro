@@ -1,0 +1,46 @@
+---
+import Icono from '../Icono.astro';
+
+interface Props {
+  ancla?: string;
+  etiqueta?: string;
+  titulo?: string;
+  texto?: string;
+  imagen?: string;
+  imagenIzquierda?: boolean;
+  puntos?: string[];
+}
+const { ancla = 'nosotros', etiqueta, titulo, texto = '', imagen, imagenIzquierda = true, puntos = [] } = Astro.props;
+const parrafos = texto.split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean);
+const lista = puntos.filter(Boolean);
+---
+<section id={ancla} class="bg-superficie py-20 md:py-28">
+  <div class="mx-auto grid max-w-6xl items-center gap-12 px-5 sm:px-8 md:grid-cols-2 md:gap-16">
+    <div class={imagenIzquierda ? '' : 'md:order-2'}>
+      {imagen ? (
+        <img src={imagen} alt="" class="aspect-[4/5] w-full rounded-tema object-cover shadow-xl md:aspect-[4/5]" />
+      ) : (
+        <div class="flex aspect-[4/3] w-full items-center justify-center rounded-tema bg-linear-to-br from-acento/40 to-primario/30 text-primario">
+          <Icono nombre="personas" class="h-20 w-20" />
+        </div>
+      )}
+    </div>
+    <div>
+      {etiqueta && <p class="mb-3 text-sm font-semibold uppercase tracking-wider text-acento">{etiqueta}</p>}
+      {titulo && <h2 class="text-3xl font-bold text-texto sm:text-4xl">{titulo}</h2>}
+      <div class="mt-6 space-y-4 text-lg text-suave">
+        {parrafos.map((p) => <p>{p}</p>)}
+      </div>
+      {lista.length > 0 && (
+        <ul class="mt-8 grid gap-3 sm:grid-cols-2">
+          {lista.map((p) => (
+            <li class="flex items-start gap-3 text-texto">
+              <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primario text-sobre-primario"><Icono nombre="check" class="h-3.5 w-3.5" /></span>
+              {p}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </div>
+</section>

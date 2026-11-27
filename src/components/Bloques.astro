@@ -1,0 +1,31 @@
+---
+// Dibuja cada sección de una página según su "tipo".
+// Para sumar un bloque nuevo: crealo en ./bloques, agregalo acá y en .pages.yml
+import type { Seccion } from '../lib/datos';
+import Hero from './bloques/Hero.astro';
+import Servicios from './bloques/Servicios.astro';
+import Nosotros from './bloques/Nosotros.astro';
+import Numeros from './bloques/Numeros.astro';
+import Testimonios from './bloques/Testimonios.astro';
+import Preguntas from './bloques/Preguntas.astro';
+import Llamado from './bloques/Llamado.astro';
+import Contacto from './bloques/Contacto.astro';
+
+interface Props { secciones: Seccion[] }
+const { secciones } = Astro.props;
+
+const mapa: Record<string, any> = {
+  hero: Hero,
+  servicios: Servicios,
+  nosotros: Nosotros,
+  numeros: Numeros,
+  testimonios: Testimonios,
+  preguntas: Preguntas,
+  llamado: Llamado,
+  contacto: Contacto,
+};
+---
+{secciones.map((seccion, i) => {
+  const Componente = mapa[seccion.tipo];
+  return Componente ? <Componente {...seccion} indice={i} /> : null;
+})}

@@ -1,0 +1,59 @@
+---
+import Encabezado from '../Encabezado.astro';
+import Icono from '../Icono.astro';
+import { sitio, enlaceWhatsapp } from '../../lib/datos';
+
+interface Props { ancla?: string; etiqueta?: string; titulo?: string; subtitulo?: string; mostrarFormulario?: boolean; mostrarMapa?: boolean }
+const { ancla = 'contacto', etiqueta, titulo, subtitulo, mostrarFormulario = true, mostrarMapa = true } = Astro.props;
+const c = sitio.contacto ?? {};
+const wa = enlaceWhatsapp(c.whatsapp, c.mensajeWhatsapp);
+const clave = sitio.formularioClave?.trim();
+const formulario = mostrarFormulario && clave;
+const mapa = mostrarMapa && c.direccion ? `https://www.google.com/maps?q=${encodeURIComponent(c.direccion)}&output=embed` : '';
+const datos = [
+  c.telefono && { icono: 'telefono', titulo: 'Teléfono', valor: c.telefono, enlace: `tel:${c.telefono.replace(/[^\d+]/g, '')}` },
+  wa && { icono: 'chat', titulo: 'WhatsApp', valor: 'Escribinos', enlace: wa },
+  c.email && { icono: 'email', titulo: 'Email', valor: c.email, enlace: `mailto:${c.email}` },
+  c.direccion && { icono: 'ubicacion', titulo: 'Dirección', valor: c.direccion },
+  c.horarios && { icono: 'reloj', titulo: 'Horarios', valor: c.horarios },
+].filter(Boolean) as { icono: string; titulo: string; valor: string; enlace?: string }[];
+const entrada = 'w-full rounded-tema border border-borde bg-fondo px-4 py-3 text-texto outline-none transition focus:border-primario focus:ring-2 focus:ring-primario/20';
+---
+<section id={ancla} class="py-20 md:py-28">
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    <Encabezado etiqueta={etiqueta} titulo={titulo} subtitulo={subtitulo} />
+    <div class={`grid gap-8 ${formulario ? 'lg:grid-cols-5' : ''}`}>
+      <div class={`space-y-4 ${formulario ? 'lg:col-span-2' : 'grid gap-4 space-y-0 sm:grid-cols-2 lg:grid-cols-3'}`}>
+        {datos.map((d) => (
+          <div class="tarjeta flex items-start gap-4 p-5">
+            <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-tema bg-primario/10 text-primario"><Icono nombre={d.icono} class="h-5 w-5" /></span>
+            <div>
+              <p class="text-sm text-suave">{d.titulo}</p>
+              {d.enlace
+                ? <a href={d.enlace} target={d.enlace.startsWith('http') ? '_blank' : undefined} rel="noopener" class="font-semibold text-texto hover:text-primario">{d.valor}</a>
+                : <p class="font-semibold text-texto">{d.valor}</p>}
+            </div>
+          </div>
+        ))}
+      </div>
+      {formulario && (
+        <form action="https://api.web3forms.com/submit" method="POST" class="tarjeta space-y-4 p-7 lg:col-span-3">
+          <input type="hidden" name="access_key" value={clave} />
+          <input type="hidden" name="subject" value={`Nuevo mensaje desde ${sitio.nombre}`} />
+          <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
+          <div class="grid gap-4 sm:grid-cols-2">
+            <label class="block"><span class="mb-1.5 block text-sm font-medium text-texto">Nombre</span><input name="nombre" required class={entrada} /></label>
+            <label class="block"><span class="mb-1.5 block text-sm font-medium text-texto">Teléfono</span><input name="telefono" type="tel" class={entrada} /></label>
+          </div>
+          <label class="block"><span class="mb-1.5 block text-sm font-medium text-texto">Email</span><input name="email" type="email" required class={entrada} /></label>
+          <label class="block"><span class="mb-1.5 block text-sm font-medium text-texto">Mensaje</span><textarea name="mensaje" rows="5" required class={entrada}></textarea></label>
+          <button type="submit" class="w-full rounded-tema bg-primario px-6 py-3.5 font-semibold text-sobre-primario transition-colors hover:bg-primario-oscuro">Enviar mensaje</button>
+        </form>
+      )}
+    </div>
+    {mapa && (
+      <iframe src={mapa} title={`Mapa: ${c.direccion}`} loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        class="mt-8 h-80 w-full rounded-tema border border-borde"></iframe>
+    )}
+  </div>
+</section>

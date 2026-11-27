@@ -1,0 +1,12 @@
+---
+// Encabezado de sección: etiqueta pequeña + título + bajada
+interface Props { etiqueta?: string; titulo?: string; subtitulo?: string; centrado?: boolean }
+const { etiqueta, titulo, subtitulo, centrado = true } = Astro.props;
+---
+{(titulo || subtitulo) && (
+  <div class={`mb-12 max-w-2xl ${centrado ? 'mx-auto text-center' : ''}`}>
+    {etiqueta && <p class="mb-3 text-sm font-semibold uppercase tracking-wider text-acento">{etiqueta}</p>}
+    {titulo && <h2 class="text-3xl font-bold text-texto sm:text-4xl">{titulo}</h2>}
+    {subtitulo && <p class="mt-4 text-lg text-suave">{subtitulo}</p>}
+  </div>
+)}

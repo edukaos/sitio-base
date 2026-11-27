@@ -1,0 +1,43 @@
+---
+import '../styles/global.css';
+import { sitio } from '../lib/datos';
+import { temas, temaValido } from '../temas/temas';
+import Cabecera from '../components/Cabecera.astro';
+import Pie from '../components/Pie.astro';
+import WhatsappFlotante from '../components/WhatsappFlotante.astro';
+
+interface Props { titulo?: string; descripcion?: string; esInicio?: boolean }
+const { titulo, descripcion, esInicio = false } = Astro.props;
+
+const tema = temaValido(sitio.tema);
+const color = /^#[0-9a-f]{3,8}$/i.test(sitio.colorPrincipal ?? '') ? sitio.colorPrincipal : '';
+const tituloCompleto = esInicio || !titulo ? `${sitio.nombre}${sitio.eslogan ? ` | ${sitio.eslogan}` : ''}` : `${titulo} | ${sitio.nombre}`;
+const desc = descripcion || sitio.eslogan || '';
+const imagenSeo = sitio.seoImagen ? new URL(sitio.seoImagen, Astro.site ?? Astro.url).href : undefined;
+---
+<!doctype html>
+<html lang="es" data-tema={tema} style={color ? `--primario: ${color}` : undefined}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{tituloCompleto}</title>
+    {desc && <meta name="description" content={desc} />}
+    <meta property="og:title" content={tituloCompleto} />
+    {desc && <meta property="og:description" content={desc} />}
+    <meta property="og:type" content="website" />
+    {imagenSeo && <meta property="og:image" content={imagenSeo} />}
+    <link rel="icon" href={sitio.logo || '/favicon.svg'} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href={`https://fonts.googleapis.com/css2?${temas[tema].fuentes}&display=swap`} />
+  </head>
+  <body class="min-h-screen">
+    <a href="#contenido" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-tema focus:bg-primario focus:px-4 focus:py-2 focus:text-white">Saltar al contenido</a>
+    <Cabecera />
+    <main id="contenido">
+      <slot />
+    </main>
+    <Pie />
+    <WhatsappFlotante />
+  </body>
+</html>

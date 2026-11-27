@@ -1,0 +1,42 @@
+---
+import { sitio } from '../lib/datos';
+import agencia from '../config/agencia.json';
+import Icono from './Icono.astro';
+const c = sitio.contacto ?? {};
+const redes = Object.entries(sitio.redes ?? {}).filter(([, url]) => url);
+const nombresRedes: Record<string, string> = { instagram: 'Instagram', facebook: 'Facebook', linkedin: 'LinkedIn', tiktok: 'TikTok' };
+const anio = new Date().getFullYear();
+---
+<footer class="bg-texto text-white/80">
+  <div class="mx-auto grid max-w-6xl gap-10 px-5 py-14 sm:px-8 md:grid-cols-3">
+    <div>
+      <p class="font-titulos text-xl font-bold text-white">{sitio.nombre}</p>
+      {sitio.eslogan && <p class="mt-3 max-w-xs text-sm">{sitio.eslogan}</p>}
+    </div>
+    <div class="space-y-3 text-sm">
+      <p class="font-semibold text-white">Contacto</p>
+      {c.telefono && <p class="flex items-center gap-2"><Icono nombre="telefono" class="h-4 w-4" />{c.telefono}</p>}
+      {c.email && <p class="flex items-center gap-2"><Icono nombre="email" class="h-4 w-4" /><a href={`mailto:${c.email}`} class="hover:text-white">{c.email}</a></p>}
+      {c.direccion && <p class="flex items-start gap-2"><Icono nombre="ubicacion" class="mt-0.5 h-4 w-4 shrink-0" />{c.direccion}</p>}
+      {c.horarios && <p class="flex items-start gap-2"><Icono nombre="reloj" class="mt-0.5 h-4 w-4 shrink-0" />{c.horarios}</p>}
+    </div>
+    {redes.length > 0 && (
+      <div class="space-y-3 text-sm">
+        <p class="font-semibold text-white">Seguinos</p>
+        {redes.map(([red, url]) => (
+          <a href={url} target="_blank" rel="noopener" class="block hover:text-white">{nombresRedes[red] ?? red}</a>
+        ))}
+      </div>
+    )}
+  </div>
+  <div class="border-t border-white/10">
+    <div class="mx-auto flex max-w-6xl flex-col gap-2 px-5 py-6 text-xs text-white/60 sm:flex-row sm:justify-between sm:px-8">
+      <p>© {anio} {sitio.nombre}. Todos los derechos reservados.</p>
+      {agencia.creditoTexto && (
+        agencia.creditoEnlace
+          ? <a href={agencia.creditoEnlace} target="_blank" rel="noopener" class="hover:text-white">{agencia.creditoTexto}</a>
+          : <p>{agencia.creditoTexto}</p>
+      )}
+    </div>
+  </div>
+</footer>

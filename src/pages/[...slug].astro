@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import Bloques from '../components/Bloques.astro';
+import { paginas, type Pagina } from '../lib/datos';
+
+export function getStaticPaths() {
+  return paginas.map((pagina) => ({
+    params: { slug: pagina.slug || undefined },
+    props: { pagina },
+  }));
+}
+
+const { pagina } = Astro.props as { pagina: Pagina };
+---
+<Base titulo={pagina.titulo} descripcion={pagina.descripcion} esInicio={!pagina.slug}>
+  <Bloques secciones={pagina.secciones} />
+</Base>

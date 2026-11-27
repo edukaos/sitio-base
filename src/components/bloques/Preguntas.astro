@@ -1,0 +1,25 @@
+---
+import Encabezado from '../Encabezado.astro';
+
+interface Item { pregunta?: string; respuesta?: string }
+interface Props { ancla?: string; etiqueta?: string; titulo?: string; subtitulo?: string; items?: Item[] }
+const { ancla = 'preguntas', etiqueta, titulo, subtitulo, items = [] } = Astro.props;
+---
+<section id={ancla} class="bg-superficie py-20 md:py-28">
+  <div class="mx-auto max-w-3xl px-5 sm:px-8">
+    <Encabezado etiqueta={etiqueta} titulo={titulo} subtitulo={subtitulo} />
+    <div class="space-y-3">
+      {items.map((item) => (
+        <details class="tarjeta group p-0">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 p-5 font-semibold text-texto [&::-webkit-details-marker]:hidden">
+            {item.pregunta}
+            <span class="shrink-0 text-primario transition-transform group-open:rotate-45">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+          </summary>
+          <p class="px-5 pb-5 text-suave">{item.respuesta}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

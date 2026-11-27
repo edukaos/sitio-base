@@ -1,0 +1,12 @@
+---
+import Base from '../layouts/Base.astro';
+import Boton from '../components/Boton.astro';
+---
+<Base titulo="Página no encontrada">
+  <section class="mx-auto max-w-xl px-5 py-32 text-center">
+    <p class="font-titulos text-7xl font-bold text-primario">404</p>
+    <h1 class="mt-4 text-2xl font-bold text-texto">No encontramos esta página</h1>
+    <p class="mt-3 text-suave">Puede que el enlace haya cambiado. Volvé al inicio para seguir navegando.</p>
+    <div class="mt-8"><Boton texto="Ir al inicio" enlace="/" /></div>
+  </section>
+</Base>

@@ -1,0 +1,15 @@
+---
+interface Item { valor?: string; etiqueta?: string }
+interface Props { ancla?: string; items?: Item[] }
+const { ancla = 'numeros', items = [] } = Astro.props;
+---
+<section id={ancla} class="bg-primario py-16 text-sobre-primario">
+  <div class={`mx-auto grid max-w-6xl gap-10 px-5 text-center sm:px-8 sm:grid-cols-2 ${items.length >= 4 ? 'lg:grid-cols-4' : 'lg:grid-cols-3'}`}>
+    {items.map((item) => (
+      <div>
+        <p class="font-titulos text-4xl font-bold md:text-5xl">{item.valor}</p>
+        <p class="mt-2 text-sm uppercase tracking-wider opacity-80">{item.etiqueta}</p>
+      </div>
+    ))}
+  </div>
+</section>

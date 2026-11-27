@@ -1,0 +1,26 @@
+---
+interface Props {
+  texto?: string;
+  enlace?: string;
+  estilo?: 'primario' | 'secundario' | 'claro' | 'contorno-claro';
+  class?: string;
+}
+const { texto, enlace, estilo = 'primario', class: clase = '' } = Astro.props;
+const estilos = {
+  primario: 'bg-primario text-sobre-primario hover:bg-primario-oscuro',
+  secundario: 'border border-borde bg-fondo text-texto hover:border-primario hover:text-primario',
+  claro: 'bg-white text-primario hover:bg-white/90',
+  'contorno-claro': 'border border-white/60 text-white hover:bg-white/10',
+};
+const externo = enlace?.startsWith('http');
+---
+{texto && enlace && (
+  <a
+    href={enlace}
+    target={externo ? '_blank' : undefined}
+    rel={externo ? 'noopener' : undefined}
+    class={`inline-flex items-center justify-center gap-2 rounded-tema px-6 py-3 text-base font-semibold transition-colors ${estilos[estilo]} ${clase}`}
+  >
+    {texto}
+  </a>
+)}

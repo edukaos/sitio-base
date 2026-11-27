@@ -1,0 +1,25 @@
+---
+import Encabezado from '../Encabezado.astro';
+import Icono from '../Icono.astro';
+
+interface Item { icono?: string; titulo?: string; texto?: string }
+interface Props { ancla?: string; etiqueta?: string; titulo?: string; subtitulo?: string; items?: Item[] }
+const { ancla = 'servicios', etiqueta, titulo, subtitulo, items = [] } = Astro.props;
+const columnas = items.length === 4 ? 'lg:grid-cols-4' : items.length % 2 === 0 && items.length < 6 ? 'lg:grid-cols-2' : 'lg:grid-cols-3';
+---
+<section id={ancla} class="py-20 md:py-28">
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    <Encabezado etiqueta={etiqueta} titulo={titulo} subtitulo={subtitulo} />
+    <div class={`grid gap-6 sm:grid-cols-2 ${columnas}`}>
+      {items.map((item) => (
+        <article class="tarjeta p-7 transition-transform hover:-translate-y-1">
+          <div class="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-tema bg-primario/10 text-primario">
+            <Icono nombre={item.icono} />
+          </div>
+          {item.titulo && <h3 class="text-xl font-bold text-texto">{item.titulo}</h3>}
+          {item.texto && <p class="mt-3 text-suave">{item.texto}</p>}
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
