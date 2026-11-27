@@ -1,0 +1,46 @@
+# Saca capturas de cada kit y las guarda en la rama "capturas" (para revisar el diseño).
+name: Capturas
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ['fase-*', 'diseno-*']
+
+permissions:
+  contents: write
+
+jobs:
+  capturas:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --no-audit --no-fund
+      - run: npm install --no-save playwright && npx playwright install --with-deps chromium
+      - name: Capturar kits
+        run: |
+          set -e
+          capturar () {
+            KIT=$1; shift
+            rm -rf src/content/paginas src/content/propiedades src/content/productos
+            cp -r "kits/$KIT/." src/content/
+            npm run build
+            npx astro preview --port 4321 > /dev/null 2>&1 &
+            PID=$!
+            npx --yes wait-on http://localhost:4321 -t 30000
+            node scripts/capturas.mjs "/tmp/capturas/$KIT" "$@"
+            kill $PID
+          }
+          capturar inmobiliaria / /propiedades /propiedades/pal-3amb-balcon /tasaciones
+          capturar profesional /
+      - name: Publicar en la rama capturas
+        run: |
+          cd /tmp/capturas
+          git init -q -b capturas
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Capturas de ${GITHUB_SHA::7}"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" capturas
