@@ -11,7 +11,7 @@ const { ancla = 'precios', etiqueta, titulo, subtitulo, planes = [], nota } = As
 const columnas = planes.length >= 4 ? 'lg:grid-cols-4' : planes.length === 2 ? 'lg:grid-cols-2 max-w-4xl mx-auto' : 'lg:grid-cols-3';
 ---
 {planes.length > 0 && (
-  <section id={ancla} class="bg-superficie py-20 md:py-28">
+  <section id={ancla} class="py-20 md:py-28">
     <div class="mx-auto max-w-6xl px-5 sm:px-8">
       <Encabezado etiqueta={etiqueta} titulo={titulo} subtitulo={subtitulo} />
       <div class={`grid items-stretch gap-6 md:grid-cols-2 ${columnas}`}>
